@@ -13,10 +13,36 @@
     <description></description>
     <display-name>Index</display-name>
     <servlet-name>Index</servlet-name>
-    <servlet-class>Index</servlet-class>
+    <servlet-class>servlets.Index</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Index</servlet-name>
     <url-pattern>/index</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Events</display-name>
+    <servlet-name>Events</servlet-name>
+    <servlet-class>servlets.Events</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Events</servlet-name>
+    <url-pattern>/events</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogIn</display-name>
+    <servlet-name>LogIn</servlet-name>
+    <servlet-class>servlets.LogIn</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogIn</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConnexionHandler</display-name>
+    <servlet-name>ConnexionHandler</servlet-name>
+    <servlet-class>servlets.ConnexionHandler</servlet-class>
+  </servlet>
 </web-app>
