@@ -45,4 +45,8 @@
     <servlet-name>ConnexionHandler</servlet-name>
     <servlet-class>servlets.ConnexionHandler</servlet-class>
   </servlet>
+  <error-page>
+  	<error-code>404</error-code>
+    <location>/html/error_404.html</location>
+	</error-page>
 </web-app>
