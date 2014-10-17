@@ -1,4 +1,4 @@
-package servlets;
+package com.eventManager.servlets;
 
 import java.io.IOException;
 

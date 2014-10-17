@@ -1,4 +1,4 @@
-package servlets;
+package com.eventManager.servlets;
 
 import java.io.IOException;
 
@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ConnexionHandler
+ * Servlet implementation class LogIn
  */
-public class ConnexionHandler extends HttpServlet {
+public class LogIn extends ConnexionHandler {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ConnexionHandler() {
+    public LogIn() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,10 @@ public class ConnexionHandler extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// gere la connexion et l enregistrement d un nouvel entrant
+		RequestDispatcher rd;
+		rd = request.getRequestDispatcher("jsp/LogInView.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -35,14 +38,5 @@ public class ConnexionHandler extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
-	
-	public RequestDispatcher handleSession(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO valeur à recuperer dans la session
-		boolean isRegistered = false;
-		RequestDispatcher rd = null;
-		if (!isRegistered) {
-			rd = getServletContext().getNamedDispatcher("LogIn");
-		}
-		return rd;
-	}
+
 }
