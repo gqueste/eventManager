@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Events
  */
-public class Events extends ConnexionHandler {
+public class Events extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -27,10 +27,7 @@ public class Events extends ConnexionHandler {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//ecran de gestion des evenements deja crees
-		RequestDispatcher rd = handleSession(request, response);
-		if(rd == null) {
-			rd = request.getRequestDispatcher("jsp/EventsView.jsp");
-		}
+		RequestDispatcher rd = request.getRequestDispatcher("jsp/EventsView.jsp");
 		rd.forward(request, response);
 	}
 

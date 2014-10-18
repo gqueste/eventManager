@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class LogIn
  */
-public class LogIn extends ConnexionHandler {
+public class LogIn extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**

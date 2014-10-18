@@ -9,3 +9,7 @@ java.runtime.version=1.7.0_25-b17
 user.dir=C:\Users\Diwan\Documents\JEE\eventManager\ddb\eventManagerDB_v2_Derby10.9\bin
 derby.system.home=C:\Users\Diwan\Documents\JEE\eventManager\ddb\eventManagerDB_v2_Derby10.9\bin
 Chargeur de classe de la base de données démarré - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Oct 18 14:20:16 CEST 2014:
+Fermeture de l'instance a816c00e-0149-230b-8a49-ffffefb4c4b1 sur le répertoire de base de données C:\Users\Diwan\Documents\JEE\eventManager\ddb\eventManagerDB_v2_Derby10.9\bin\eventManager avec le chargeur de classe sun.misc.Launcher$AppClassLoader@6e6dcfde
+Sat Oct 18 14:20:16 CEST 2014 Thread[DRDAConnThread_4,5,main] (DATABASE = eventManager), (DRDAID = {14}), Arrêt de la base de données 'eventManager'.
