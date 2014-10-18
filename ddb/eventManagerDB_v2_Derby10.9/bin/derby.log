@@ -1,36 +1,8 @@
-Fri Oct 17 15:58:33 CEST 2014 : Apache Derby Serveur réseau - 10.9.1.0 - (1344872) démarré et prêt à accepter les connexions sur le port 1527
+Sat Oct 18 13:36:39 CEST 2014 : Apache Derby Serveur réseau - 10.9.1.0 - (1344872) démarré et prêt à accepter les connexions sur le port 1527
 ----------------------------------------------------------------
-Fri Oct 17 15:58:37 CEST 2014:
-Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872) : instance a816c00e-0149-1e67-19d7-ffffefb4c4b1 
-dans le répertoire de base de données C:\Users\Diwan\Documents\JEE\eventManager\ddb\eventManagerDB_v2_Derby10.9\bin\eventManager  avec le chargeur de classe sun.misc.Launcher$AppClassLoader@6b6a3075
-
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_25-b17
-user.dir=C:\Users\Diwan\Documents\JEE\eventManager\ddb\eventManagerDB_v2_Derby10.9\bin
-derby.system.home=C:\Users\Diwan\Documents\JEE\eventManager\ddb\eventManagerDB_v2_Derby10.9\bin
-Chargeur de classe de la base de données démarré - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Oct 17 15:58:38 CEST 2014:
-Fermeture de l'instance a816c00e-0149-1e67-19d7-ffffefb4c4b1 sur le répertoire de base de données C:\Users\Diwan\Documents\JEE\eventManager\ddb\eventManagerDB_v2_Derby10.9\bin\eventManager avec le chargeur de classe sun.misc.Launcher$AppClassLoader@6b6a3075
-Fri Oct 17 15:58:38 CEST 2014 Thread[DRDAConnThread_4,5,main] (DATABASE = eventManager), (DRDAID = {2}), Arrêt de la base de données 'eventManager'.
-----------------------------------------------------------------
-Fri Oct 17 15:59:07 CEST 2014:
-Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872) : instance 94bc40a2-0149-1e67-19d7-ffffefb4c4b1 
-dans le répertoire de base de données C:\Users\Diwan\Documents\JEE\eventManager\ddb\eventManagerDB_v2_Derby10.9\bin\eventManager  avec le chargeur de classe sun.misc.Launcher$AppClassLoader@6b6a3075
-
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_25-b17
-user.dir=C:\Users\Diwan\Documents\JEE\eventManager\ddb\eventManagerDB_v2_Derby10.9\bin
-derby.system.home=C:\Users\Diwan\Documents\JEE\eventManager\ddb\eventManagerDB_v2_Derby10.9\bin
-Chargeur de classe de la base de données démarré - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Oct 17 15:59:07 CEST 2014:
-Fermeture de l'instance 94bc40a2-0149-1e67-19d7-ffffefb4c4b1 sur le répertoire de base de données C:\Users\Diwan\Documents\JEE\eventManager\ddb\eventManagerDB_v2_Derby10.9\bin\eventManager avec le chargeur de classe sun.misc.Launcher$AppClassLoader@6b6a3075
-Fri Oct 17 15:59:07 CEST 2014 Thread[DRDAConnThread_5,5,main] (DATABASE = eventManager), (DRDAID = {4}), Arrêt de la base de données 'eventManager'.
-----------------------------------------------------------------
-Fri Oct 17 15:59:10 CEST 2014:
-Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872) : instance ace4c0a3-0149-1e67-19d7-ffffefb4c4b1 
-dans le répertoire de base de données C:\Users\Diwan\Documents\JEE\eventManager\ddb\eventManagerDB_v2_Derby10.9\bin\eventManager  avec le chargeur de classe sun.misc.Launcher$AppClassLoader@6b6a3075
+Sat Oct 18 13:37:04 CEST 2014:
+Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872) : instance a816c00e-0149-230b-8a49-ffffefb4c4b1 
+dans le répertoire de base de données C:\Users\Diwan\Documents\JEE\eventManager\ddb\eventManagerDB_v2_Derby10.9\bin\eventManager  avec le chargeur de classe sun.misc.Launcher$AppClassLoader@6e6dcfde
 
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_25-b17
