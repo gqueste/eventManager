@@ -1,9 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Telosys Database Repository --><root>
-<tableList databaseId="0" databaseName="EVENTMANAGER" databaseProductName="Apache Derby" generation="2014-10-18 13:47:43">
-<table catalog="" databaseType="TABLE" javaBean="Exemple" name="EXEMPLE" schema="APP">
-<column dbDefaultValue="" dbName="ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INTEGER" inputType="number" javaName="id" javaType="java.lang.Integer" jdbcTypeCode="4" label="Id" notNull="true" selected="true"/>
-<column dbDefaultValue="" dbName="NOM" dbNotNull="false" dbPosition="2" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="nom" javaType="java.lang.String" jdbcTypeCode="12" label="Nom" maxLength="50" notNull="false" selected="true"/>
+<tableList databaseId="0" databaseName="EVENTMANAGER" databaseProductName="Apache Derby" generation="2014-10-19 15:40:43">
+<table catalog="" databaseType="TABLE" javaBean="Events" name="EVENTS" schema="APP">
+<column dbAutoIncremented="true" dbDefaultValue="AUTOINCREMENT: start 1 increment 1" dbName="EVENT_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INTEGER" inputType="number" javaName="eventId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Event Id" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="URL" dbNotNull="true" dbPosition="2" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="url" javaType="java.lang.String" jdbcTypeCode="12" label="Url" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbForeignKey="true" dbName="CREATOR_ID" dbNotNull="true" dbPosition="3" dbSize="10" dbTypeName="INTEGER" inputType="number" javaName="creatorId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Creator Id" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="NAME" dbNotNull="true" dbPosition="4" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="ADDRESS" dbNotNull="true" dbPosition="5" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="address" javaType="java.lang.String" jdbcTypeCode="12" label="Address" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dateType="DT" dbDefaultValue="" dbName="DATE_BEGINNING" dbNotNull="false" dbPosition="6" dbSize="29" dbTypeName="TIMESTAMP" inputType="" javaName="dateBeginning" javaType="java.util.Date" jdbcTypeCode="93" label="Date Beginning" notNull="false" selected="true"/>
+<column dateType="DT" dbDefaultValue="" dbName="DATE_END" dbNotNull="false" dbPosition="7" dbSize="29" dbTypeName="TIMESTAMP" inputType="" javaName="dateEnd" javaType="java.util.Date" jdbcTypeCode="93" label="Date End" notNull="false" selected="true"/>
+<column dbDefaultValue="" dbName="PUBLISHED" dbNotNull="false" dbPosition="8" dbSize="1" dbTypeName="BOOLEAN" inputType="checkbox" javaName="published" javaType="java.lang.Boolean" jdbcTypeCode="16" label="Published" notNull="false" selected="true"/>
+<fk name="SQL141019153936602">
+<fkcol colname="CREATOR_ID" colref="USER_ID" deferrable="7" deleterule="3" sequence="1" tablename="EVENTS" tableref="USERS" updaterule="3"/>
+</fk>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="SQL141019153936691" id="LINK_FK_SQL141019153936691_I" inverseSideOf="LINK_FK_SQL141019153936691_O" javaName="listOfInscriptions" javaType="java.util.List" joinTableName="" mappedBy="events" optional="UNDEFINED" owningSide="false" sourceTableName="EVENTS" targetEntity="Inscriptions" targetTableName="INSCRIPTIONS" used="true"/>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="SQL141019153936602" id="LINK_FK_SQL141019153936602_O" inverseSideOf="" javaName="users" javaType="Users" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="EVENTS" targetEntity="Users" targetTableName="USERS" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="CREATOR_ID" nullable="true" referencedColumnName="USER_ID" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="" databaseType="TABLE" javaBean="Inscriptions" name="INSCRIPTIONS" schema="APP">
+<column dbAutoIncremented="true" dbDefaultValue="AUTOINCREMENT: start 1 increment 1" dbName="INSCRIPTION_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INTEGER" inputType="number" javaName="inscriptionId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Inscription Id" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbForeignKey="true" dbName="EVENT_ID" dbNotNull="true" dbPosition="2" dbSize="10" dbTypeName="INTEGER" inputType="number" javaName="eventId" javaType="java.lang.Integer" jdbcTypeCode="4" label="Event Id" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="MAIL" dbNotNull="true" dbPosition="3" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="mail" javaType="java.lang.String" jdbcTypeCode="12" label="Mail" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="NAME" dbNotNull="true" dbPosition="4" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="SURNAME" dbNotNull="true" dbPosition="5" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="surname" javaType="java.lang.String" jdbcTypeCode="12" label="Surname" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="COMPANY" dbNotNull="true" dbPosition="6" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="company" javaType="java.lang.String" jdbcTypeCode="12" label="Company" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<fk name="SQL141019153936691">
+<fkcol colname="EVENT_ID" colref="EVENT_ID" deferrable="7" deleterule="3" sequence="1" tablename="INSCRIPTIONS" tableref="EVENTS" updaterule="3"/>
+</fk>
+<link cardinality="ManyToOne" cascade="" fetch="DEFAULT" foreignKeyName="SQL141019153936691" id="LINK_FK_SQL141019153936691_O" inverseSideOf="" javaName="events" javaType="Events" joinTableName="" mappedBy="" optional="UNDEFINED" owningSide="true" sourceTableName="INSCRIPTIONS" targetEntity="Events" targetTableName="EVENTS" used="true">
+<joinColumns>
+<joinColumn insertable="false" name="EVENT_ID" nullable="true" referencedColumnName="EVENT_ID" unique="false" updatable="false"/>
+</joinColumns>
+</link>
+</table>
+<table catalog="" databaseType="TABLE" javaBean="Users" name="USERS" schema="APP">
+<column dbAutoIncremented="true" dbDefaultValue="AUTOINCREMENT: start 1 increment 1" dbName="USER_ID" dbNotNull="true" dbPosition="1" dbPrimaryKey="true" dbSize="10" dbTypeName="INTEGER" inputType="number" javaName="userId" javaType="java.lang.Integer" jdbcTypeCode="4" label="User Id" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="MAIL" dbNotNull="true" dbPosition="2" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="mail" javaType="java.lang.String" jdbcTypeCode="12" label="Mail" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="NAME" dbNotNull="true" dbPosition="3" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="name" javaType="java.lang.String" jdbcTypeCode="12" label="Name" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="SURNAME" dbNotNull="true" dbPosition="4" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="surname" javaType="java.lang.String" jdbcTypeCode="12" label="Surname" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="PASSWORD" dbNotNull="true" dbPosition="5" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="password" javaType="java.lang.String" jdbcTypeCode="12" label="Password" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<column dbDefaultValue="" dbName="COMPANY" dbNotNull="true" dbPosition="6" dbSize="50" dbTypeName="VARCHAR" inputType="text" javaName="company" javaType="java.lang.String" jdbcTypeCode="12" label="Company" maxLength="50" notEmpty="true" notNull="true" selected="true"/>
+<link cardinality="OneToMany" cascade="" fetch="DEFAULT" foreignKeyName="SQL141019153936602" id="LINK_FK_SQL141019153936602_I" inverseSideOf="LINK_FK_SQL141019153936602_O" javaName="listOfEvents" javaType="java.util.List" joinTableName="" mappedBy="users" optional="UNDEFINED" owningSide="false" sourceTableName="USERS" targetEntity="Events" targetTableName="EVENTS" used="true"/>
 </table>
 </tableList>
 </root>
