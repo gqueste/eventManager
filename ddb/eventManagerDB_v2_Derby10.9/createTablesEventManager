@@ -1,5 +1,5 @@
 drop table APP.INSCRIPTIONS;
-drop table APP.EVENTS;
+drop table APP.events;
 drop table APP.USERS;
 
 create table APP.USERS (
@@ -18,9 +18,9 @@ CREATE TABLE APP.EVENTS (
 	creator_id		integer not null,
 	name			varchar(50) not null,
 	address			varchar(50) not null,
-	date_beginning	timestamp,
-	date_end		timestamp,
-	published		boolean,
+	date_beginning	TIMESTAMP,
+	date_end		TIMESTAMP,
+	published		SMALLINT,
 	primary key (event_id),
 	FOREIGN KEY (creator_id) REFERENCES APP.USERS(user_id)	
 );
@@ -33,6 +33,6 @@ create table APP.INSCRIPTIONS (
 	surname 		varchar(50) NOT NULL,
 	company 		varchar(50) NOT NULL,
 	primary key (inscription_id),
-	foreign key (event_id) references APP.EVENTS(event_id)
+	foreign key (event_id) references APP.events(event_id)
 );
 
