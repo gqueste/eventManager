@@ -15,6 +15,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.eventManager.persistence.PersistenceServiceProvider;
+import com.eventManager.persistence.services.UsersPersistence;
+
 /**
  * Persistent class for entity stored in table "USERS"
  *
@@ -158,6 +161,20 @@ public class UsersEntity implements Serializable {
         sb.append("|");
         sb.append(company);
         return sb.toString(); 
-    } 
+    }
+    
+    public static void main(String[] args) {
+    	UsersPersistence service = PersistenceServiceProvider.getService(UsersPersistence.class);
+    	UsersEntity user = new UsersEntity();
+    	user.setCompany("company");
+    	user.setMail("czeee");
+    	user.setName("zererze");
+    	user.setPassword("zerzerza");
+    	user.setSurname("arzraz");
+    	service.insert(user);
+    	
+    	UsersEntity user2 =  service.load(2);
+    	System.out.println(user2);
+	}
 
 }
