@@ -25,8 +25,8 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   	<ul class="nav navbar-nav navbar-right">
   		<li>
-  		<c:if test="${empty sessionScope.id_user}"><a href="login">Connexion</a></c:if>
-  		<c:if test="${not empty sessionScope.id_user}"><a href="logout">Déconnexion</a></c:if>
+  		<c:if test="${empty sessionScope.user_id}"><a href="login">Connexion</a></c:if>
+  		<c:if test="${not empty sessionScope.user_id}"><a href="logout">Déconnexion</a></c:if>
   		</li>
   	</ul>
   </div>

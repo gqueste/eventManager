@@ -5,7 +5,7 @@ import javax.servlet.http.HttpSession;
 
 public class ConnexionUtils {
 	
-	public static final String SESSION_USER_ATTRIBUTE = "id_user";
+	public static final String SESSION_USER_ATTRIBUTE = "user_id";
 	
 	public static boolean isSessionValid(HttpServletRequest request) {
 		boolean ret = false;
