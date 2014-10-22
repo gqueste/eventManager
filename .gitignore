@@ -1,3 +1,9 @@
 /build/
 /target/
 pom.properties
+*.tmp
+*.dat
+/ddb/eventManagerDB_v2_Derby10.9/bin/eventManager/log/*
+/ddb/eventManagerDB_v2_Derby10.9/bin/eventManager/seg0/*
+/ddb/eventManagerDB_v2_Derby10.9/bin/*.log
+*.lck
