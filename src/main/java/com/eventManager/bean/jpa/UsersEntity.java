@@ -167,7 +167,7 @@ public class UsersEntity implements Serializable {
     	UsersPersistence service = PersistenceServiceProvider.getService(UsersPersistence.class);
     	UsersEntity user = new UsersEntity();
     	user.setCompany("company");
-    	user.setMail("czeee");
+    	user.setMail("czeeeu");
     	user.setName("zererze");
     	user.setPassword("zerzerza");
     	user.setSurname("arzraz");
