@@ -7,14 +7,38 @@
 package com.eventManager.bean.jpa;
 
 import java.io.Serializable;
-
+import java.sql.Timestamp;
+import java.util.ArrayList;
 //import javax.validation.constraints.* ;
 //import org.hibernate.validator.constraints.* ;
-
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Persistence;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Root;
+
+import com.eventManager.persistence.PersistenceServiceProvider;
+import com.eventManager.persistence.services.EventsPersistence;
+import com.eventManager.persistence.services.UsersPersistence;
 
 /**
  * Persistent class for entity stored in table "EVENTS"
@@ -187,5 +211,85 @@ public class EventsEntity implements Serializable {
         sb.append(published);
         return sb.toString(); 
     } 
+    
+    public void add(String userId, String nameEvent, String adressEvent, Timestamp debut, Timestamp fin, short published) {
+    	EventsPersistence service = PersistenceServiceProvider.getService(EventsPersistence.class);
+    	UsersPersistence service2 = PersistenceServiceProvider.getService(UsersPersistence.class);
+    	EventsEntity event = new EventsEntity();
+    	event.setName(nameEvent);
+    	event.setAddress(adressEvent);
+    	event.setPublished(published);
+    	event.setDateBeginning(debut);
+    	event.setDateEnd(fin);
+    	event.setUrl("#"+nameEvent);
+    	event.setUsers(service2.load(Integer.parseInt(userId)));
+    	service.insert(event);
+    	
+	}
+    
+    public List<EventsEntity> getAllEventsCreated(String userId) {
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence-unit1");
+    	//UsersPersistence service2 = PersistenceServiceProvider.getService(UsersPersistence.class);
+		EntityManager em = emf.createEntityManager();
+		UsersEntity user = em.find(UsersEntity.class, Integer.parseInt(userId));
+		EventsEntity event = new EventsEntity();
+		
+		TypedQuery<EventsEntity> query = em.createQuery("SELECT event FROM EventsEntity as event WHERE event.users.mail='"+user.getMail()+"'", EventsEntity.class);
+		List<EventsEntity> resultList = query.getResultList();
+    	
+		return resultList;
+	}
+    
+    public List<EventsEntity> getAllEventsParticipated(String userID) {
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence-unit1");
+    	//UsersPersistence service2 = PersistenceServiceProvider.getService(UsersPersistence.class);
+		EntityManager em = emf.createEntityManager();
+		UsersEntity user = em.find(UsersEntity.class, Integer.parseInt(userID));
+		EventsEntity event = new EventsEntity();
+		InscriptionsEntity inscription = new InscriptionsEntity();
+		TypedQuery<InscriptionsEntity> query = em.createQuery("SELECT inscription FROM InscriptionsEntity as inscription WHERE inscription.mail='"+user.getMail()+"'", InscriptionsEntity.class);
+		System.out.println("executed");
+		List<InscriptionsEntity> result = query.getResultList();
+		List<EventsEntity> resultList = new ArrayList<EventsEntity>();
+		for (InscriptionsEntity e : result){
+			resultList.add(e.getEvents());
+		}
+    	return resultList;
+    	
+	}
+    
+    public String delete(int userId, int rowId) {
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence-unit1");
+    	EntityManager em = emf.createEntityManager();
+		EventsEntity event = em.find(EventsEntity.class, rowId);
+		if(event.getUsers().getUserId()==userId){
+			System.out.println(event.getName());
+			System.out.println(event.getEventId());
+			em.getTransaction().begin();
+			em.remove(event);
+			em.getTransaction().commit();
+			return "success";
+		}
+		else{
+			return "failed";
+		}
+	}
+    
+    public String publish(int userId, int rowId) {
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence-unit1");
+    	EntityManager em = emf.createEntityManager();
+		EventsEntity event = em.find(EventsEntity.class, rowId);
+		if(event.getUsers().getUserId()==userId){
+			System.out.println(event.getName());
+			System.out.println(event.getEventId());
+			em.getTransaction().begin();
+			event.setPublished((short)1);
+			em.getTransaction().commit();
+			return "success";
+		}
+		else{
+			return "failed";
+		}
+	}
 
 }

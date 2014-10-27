@@ -58,4 +58,24 @@
     <servlet-name>LogOut</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteEvents</display-name>
+    <servlet-name>DeleteEvents</servlet-name>
+    <servlet-class>com.eventManager.servlets.DeleteEvents</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteEvents</servlet-name>
+    <url-pattern>/DeleteEvents</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PublishEvent</display-name>
+    <servlet-name>PublishEvent</servlet-name>
+    <servlet-class>com.eventManager.servlets.PublishEvent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PublishEvent</servlet-name>
+    <url-pattern>/PublishEvent</url-pattern>
+  </servlet-mapping>
 </web-app>
