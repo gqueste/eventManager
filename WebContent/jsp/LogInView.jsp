@@ -16,8 +16,13 @@
   </div>
   <c:if test="${noError ne erreurs}">
   	<div class="form-group">
-  		<div class="col-sm-offset-2 col-sm-10">
-  			<p class="bg-danger">${erreurs}</p>
+  		<div class="panel panel-danger col-sm-offset-2 col-sm-10">
+  			<div class="panel-heading">
+  				<h3 class="panel-title">Erreur</h3>
+  			</div>
+  			<div class="panel-body">
+  				${erreurs}
+  			</div>
   		</div>
   	</div>
   </c:if>

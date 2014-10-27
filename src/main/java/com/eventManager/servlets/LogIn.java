@@ -21,14 +21,6 @@ import com.eventManager.utils.ConnexionUtils;
  */
 public class LogIn extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String LOGIN_VIEW = "jsp/LogInView.jsp";
-	private static final String PARAM_MAIL = "mail";
-	private static final String PARAM_PASSWORD = "password";
-	private static final String PARAM_TENTATIVE = "tentative";
-	private static final String EMPTY_STRING = "";
-	private static final String ERREURS_ID = "erreurs";
-	private static final String ERREUR_MAIL_MANQUANT = "Entrez votre adresse mail pour vous connecter. ";
-	private static final String ERREUR_PASSWORD_MANQUANT = "Entrez votre mot de passe pour vous connecter. ";
 	private static final String ERREUR_MAIL_INCORRECT = "Le mail entré est incorrect. ";
 	private static final String ERREUR_PASSWORD_INCORRECT = "Le mot de passe est incorrect. ";
 
@@ -65,27 +57,27 @@ public class LogIn extends HttpServlet {
 		}
 		else {
 			//pas encore connecté
-			rd = request.getRequestDispatcher(LOGIN_VIEW);
+			rd = request.getRequestDispatcher(ConnexionUtils.LOGIN_VIEW);
 
-			String paramMail = request.getParameter(PARAM_MAIL);
-			String paramPassword = request.getParameter(PARAM_PASSWORD);
-			String paramTentative = request.getParameter(PARAM_TENTATIVE);
+			String paramMail = request.getParameter(ConnexionUtils.PARAM_MAIL);
+			String paramPassword = request.getParameter(ConnexionUtils.PARAM_PASSWORD);
+			String paramTentative = request.getParameter(ConnexionUtils.PARAM_TENTATIVE);
 			
-			String erreurs = EMPTY_STRING;
+			String erreurs = ConnexionUtils.EMPTY_STRING;
 			
 			if (paramTentative != null) {
 				//tentative de connexion
-				if(paramMail.equals(EMPTY_STRING) || paramPassword.equals(EMPTY_STRING)) {
+				if(paramMail.equals(ConnexionUtils.EMPTY_STRING) || paramPassword.equals(ConnexionUtils.EMPTY_STRING)) {
 					//champ manquant
-					if(paramMail.equals(EMPTY_STRING)) {
-						erreurs += ERREUR_MAIL_MANQUANT;
+					if(paramMail.equals(ConnexionUtils.EMPTY_STRING)) {
+						erreurs += ConnexionUtils.ERREUR_MAIL_MANQUANT;
 					}
 					else {
 						//TODO mail existe ?
 					}
 					
-					if(paramPassword.equals(EMPTY_STRING)) {
-						erreurs += ERREUR_PASSWORD_MANQUANT;
+					if(paramPassword.equals(ConnexionUtils.EMPTY_STRING)) {
+						erreurs += ConnexionUtils.ERREUR_PASSWORD_MANQUANT;
 					}
 				}
 				else{
@@ -117,10 +109,10 @@ public class LogIn extends HttpServlet {
 				}
 			}
 			if (!redirectionFaite) {
-				request.setAttribute(PARAM_MAIL, paramMail);
-				request.setAttribute(PARAM_PASSWORD, paramPassword);
-				request.setAttribute("noError", EMPTY_STRING);
-				request.setAttribute(ERREURS_ID, erreurs);
+				request.setAttribute(ConnexionUtils.PARAM_MAIL, paramMail);
+				request.setAttribute(ConnexionUtils.PARAM_PASSWORD, paramPassword);
+				request.setAttribute("noError", ConnexionUtils.EMPTY_STRING);
+				request.setAttribute(ConnexionUtils.ERREURS_ID, erreurs);
 				
 				rd.forward(request, response);
 			}

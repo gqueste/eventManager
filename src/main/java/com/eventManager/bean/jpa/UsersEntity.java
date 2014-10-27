@@ -78,6 +78,15 @@ public class UsersEntity implements Serializable {
 		super();
     }
     
+    public UsersEntity(String mail, String name, String surname, String password, String company) {
+    	super();
+    	this.mail = mail;
+    	this.name = name;
+    	this.surname = surname;
+    	this.password = password;
+    	this.company = company;
+    }
+    
     //----------------------------------------------------------------------
     // GETTER & SETTER FOR THE KEY FIELD
     //----------------------------------------------------------------------
