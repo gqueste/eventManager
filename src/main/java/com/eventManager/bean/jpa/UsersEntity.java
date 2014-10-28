@@ -8,15 +8,18 @@ package com.eventManager.bean.jpa;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 //import javax.validation.constraints.* ;
 //import org.hibernate.validator.constraints.* ;
-
 import java.util.List;
-
-import javax.persistence.*;
-
-import com.eventManager.persistence.PersistenceServiceProvider;
-import com.eventManager.persistence.services.UsersPersistence;
 
 /**
  * Persistent class for entity stored in table "USERS"
@@ -171,19 +174,4 @@ public class UsersEntity implements Serializable {
         sb.append(company);
         return sb.toString(); 
     }
-    
-    public static void main(String[] args) {
-    	UsersPersistence service = PersistenceServiceProvider.getService(UsersPersistence.class);
-    	UsersEntity user = new UsersEntity();
-    	user.setCompany("company");
-    	user.setMail("czeeeu");
-    	user.setName("zererze");
-    	user.setPassword("zerzerza");
-    	user.setSurname("arzraz");
-    	service.insert(user);
-    	
-    	UsersEntity user2 =  service.load(2);
-    	System.out.println(user2);
-	}
-
 }

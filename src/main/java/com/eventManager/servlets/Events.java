@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.eventManager.bean.jpa.EventsEntity;
-import com.eventManager.bean.jpa.InscriptionsEntity;
 import com.eventManager.utils.ConnexionUtils;
 
 /**
@@ -77,7 +76,6 @@ public class Events extends HttpServlet {
 	}
 	
 	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
-		// TODO Auto-generated method stub
 		HttpSession session;
 		session = request.getSession(false);
 		RequestDispatcher rd;
