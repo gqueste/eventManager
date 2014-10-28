@@ -33,7 +33,7 @@ public class ConnexionUtils {
 		if(session != null) {
 			String idUtilisateur = (String) session.getAttribute(SESSION_USER_ATTRIBUTE);
 			if(idUtilisateur != null) {
-				System.out.println("user_id : "+idUtilisateur);
+				System.out.println(SESSION_USER_ATTRIBUTE + " : "+idUtilisateur);
 				ret = true;
 			}
 		}

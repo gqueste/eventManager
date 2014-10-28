@@ -18,6 +18,10 @@ import com.eventManager.utils.ConnexionUtils;
  */
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String ERREUR_NOM_MANQUANT= "Entrez votre nom. ";
+	private static final String ERREUR_PRENOM_MANQUANT = "Entrez votre prénom. ";
+	private static final String ERREUR_CONFIRMATION_MANQUANTE = "Confirmez votre password. ";
+	private static final String ERREUR_MAIL_DEJA_UTILISE = "Ce mail est déjà utilisé. ";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -67,16 +71,16 @@ public class Register extends HttpServlet {
 					erreurs += ConnexionUtils.ERREUR_MAIL_MANQUANT;
 				}
 				if(paramName.equals(ConnexionUtils.EMPTY_STRING)) {
-					erreurs += "Entrez votre nom. ";
+					erreurs += ERREUR_NOM_MANQUANT;
 				}
 				if(paramSurname.equals(ConnexionUtils.EMPTY_STRING)) {
-					erreurs += "Entrez votre prénom. ";
+					erreurs += ERREUR_PRENOM_MANQUANT;
 				}
 				if(paramPassword.equals(ConnexionUtils.EMPTY_STRING)) {
 					erreurs += ConnexionUtils.ERREUR_PASSWORD_MANQUANT;
 				}
 				if(paramPasswordConfirm.equals(ConnexionUtils.EMPTY_STRING) || ! paramPassword.equals(paramPasswordConfirm)) {
-					erreurs += "Confirmez votre password. ";
+					erreurs += ERREUR_CONFIRMATION_MANQUANTE;
 				}
 
 				if(erreurs.equals(ConnexionUtils.EMPTY_STRING)) {
@@ -87,7 +91,7 @@ public class Register extends HttpServlet {
 					UsersEntity user = new UsersEntity(paramMail, paramName, paramSurname, paramPassword, paramCompany);
 					int user_id = em.insertAndGetID(user);
 					if(user_id == -1) {
-						erreurs += "Ce mail est déjà utilisé. ";
+						erreurs += ERREUR_MAIL_DEJA_UTILISE;
 					}
 					else {
 						//insertion ok
