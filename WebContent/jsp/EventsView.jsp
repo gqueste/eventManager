@@ -1,19 +1,31 @@
 <%@ include file="../WEB-INF/jspf/header.jspf"%>
- <script>
-$(function() {
-	var pickerOpts = {
-	    dateFormat:"dd-mm-yy",
-		firstDay:1,		
-	}; 
-	$( "#debutEvent" ).datepicker(pickerOpts);
-});
-$(function() {
-	var pickerOpts = {
-	    dateFormat:"dd-mm-yy",
-		firstDay:1,	
-	};
-	$( "#finEvent" ).datepicker(pickerOpts);
-});
+<script>
+	$(function() {
+		var pickerOpts = {
+			dateFormat : "dd-mm-yy",
+			firstDay : 1,
+		};
+		$("#debutEvent").datepicker(pickerOpts);
+	});
+	$(function() {
+		var pickerOpts = {
+			dateFormat : "dd-mm-yy",
+			firstDay : 1,
+		};
+		$("#finEvent").datepicker(pickerOpts);
+	});
+	$(function() {
+		jQuery('#datetimepicker').datetimepicker({
+			datepicker : false,
+			format : 'H:i'
+		});
+	});
+	$(function() {
+		jQuery('#datetimepicker2').datetimepicker({
+			datepicker : false,
+			format : 'H:i'
+		});
+	});
 </script>
 <h1>Page de gestions des events v2</h1>
 <ul class="nav nav-tabs" role="tablist">
@@ -28,27 +40,27 @@ $(function() {
 <!-- Tab panes -->
 <div class="tab-content">
 	<div class="tab-pane active" id="participeIn">
-	<br>
-	<table class="table table-bordered">
-		<tr>
-			<td><u>Name</u></td>
-			<td><u>Adress</u></td>
-			<td><u>Url</u></td>
-			<td><u>Beginning</u></td>
-			<td><u>End</u></td>
-		</tr>
-		<c:forEach items="${listInscription}" var="inscription">
+		<br>
+		<table class="table table-bordered">
 			<tr>
+				<td><u>Name</u></td>
+				<td><u>Adress</u></td>
+				<td><u>Url</u></td>
+				<td><u>Beginning</u></td>
+				<td><u>End</u></td>
+			</tr>
+			<c:forEach items="${listInscription}" var="inscription">
+				<tr>
 					<td><c:out value="${inscription.name} " /></td>
 					<td><c:out value="${inscription.address} " /></td>
 					<td><a href="${inscription.url}"><c:out
 								value="${inscription.url} " /></a></td>
-					<td></td>
-					<td></td>
-					
+					<td><c:out value="${inscription.dateBeginning} " /></td>
+					<td><c:out value="${inscription.dateEnd} " /></td>
+
 				</tr>
 			</c:forEach>
-	</table>
+		</table>
 	</div>
 	<div class="tab-pane" id="createdEvent">
 		<br>
@@ -67,13 +79,13 @@ $(function() {
 					<td><c:out value="${eventList.address} " /></td>
 					<td><a href="${eventList.url}"><c:out
 								value="${eventList.url} " /></a></td>
-					<td></td>
-					<td></td>
-					<td>
-					<c:if test="${eventList.published==0}">
-						<a href="PublishEvent?id=${eventList.eventId}"><button type="button" class="btn btn-primary">Publier</button></a>
-					</c:if>
-						<a href="DeleteEvents?id=${eventList.eventId} "><button type="button" class="btn btn-danger">Supprimer</button></a></td>
+					<td><c:out value="${eventList.dateBeginning} " /></td>
+					<td><c:out value="${eventList.dateEnd} " /></td>
+					<td><c:if test="${eventList.published==0}">
+							<a href="PublishEvent?id=${eventList.eventId}"><button
+									type="button" class="btn btn-primary">Publier</button></a>
+						</c:if> <a href="DeleteEvents?id=${eventList.eventId} "><button
+								type="button" class="btn btn-danger">Supprimer</button></a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -95,24 +107,26 @@ $(function() {
 			</div>
 			<div class="form-group">
 				<label for="debutEvent">Debut Event</label> <input type="text"
-					class="form-control" id="debutEvent" name="debut" required style="width:150px; display:inline;"
-					value="${debut}" placeholder="jj-mm-aaaa">
-					<input type="text"
-					class="form-control" id="debutEventH" name="debutH" style="width:150px; display:inline;"
-					value="${debut}" placeholder="hh-mm-ss">
+					class="form-control" id="debutEvent" name="debut" required
+					style="width: 150px; display: inline;" value="${debut}"
+					placeholder="jj-mm-aaaa"> <input type="text"
+					class="form-control" id="datetimepicker" required name="debutH"
+					style="width: 150px; display: inline;" value="${debut}"
+					placeholder="hh-mm-ss">
 			</div>
 			<div class="form-group">
 				<label for="finEvent">Fin Event</label> <input type="text"
 					class="form-control" id="finEvent" name="fin" required
-					style="width: 150px; display:inline; margin-left:1.58%;" value="${fin}" placeholder="jj-mm-aaaa">
-					<input type="text"
-					class="form-control" id="finEventH" name="finH" style="width:150px; display:inline;"
-					value="${debut}" placeholder="hh-mm-ss">
-					<div class="bfh-timepicker">
-</div>
+					style="width: 150px; display: inline; margin-left: 1.58%;"
+					value="${fin}" placeholder="jj-mm-aaaa"> <input type="text"
+					class="form-control" id="datetimepicker2" required name="finH"
+					style="width: 150px; display: inline;" value="${debut}"
+					placeholder="hh-mm-ss">
+
 			</div>
 			<div class="checkbox">
-				<label> <input type="checkbox" name="published" value="1"> Publier
+				<label> <input type="checkbox" name="published" value="1">
+					Publier
 				</label>
 			</div>
 			<button type="submit" class="btn btn-primary">Créer
@@ -121,4 +135,9 @@ $(function() {
 	</div>
 </div>
 
+<script type="text/javascript">
+<!--
+	jQuery('#datetimepicker').datetimepicker();
+//-->
+</script>
 <%@ include file="../WEB-INF/jspf/footer.jspf"%>

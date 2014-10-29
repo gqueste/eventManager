@@ -87,9 +87,11 @@ public class Events extends HttpServlet {
 		if(request.getParameter("published")!=null){
 			published = 1;
 		}
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-	    Date parsedDateDeb = dateFormat.parse(request.getParameter("debut"));
-	    Date parsedDateFin = dateFormat.parse(request.getParameter("fin"));
+		String debut = request.getParameter("debut")+" "+request.getParameter("debutH");
+		String fin = request.getParameter("fin")+" "+request.getParameter("finH");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+	    Date parsedDateDeb = dateFormat.parse(debut);
+	    Date parsedDateFin = dateFormat.parse(fin);
 	    Timestamp timestampDebut = new java.sql.Timestamp(parsedDateDeb.getTime());
 	    Timestamp timestampFin = new java.sql.Timestamp(parsedDateFin.getTime());
 		EventsEntity event = new EventsEntity();
