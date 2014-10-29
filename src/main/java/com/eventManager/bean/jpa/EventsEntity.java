@@ -231,6 +231,14 @@ public class EventsEntity implements Serializable {
 		return resultList;
 	}
     
+    public List<EventsEntity> getEvent(String id) {
+    	EventsPersistenceJPA eventsJPA = new EventsPersistenceJPA();
+    	Map<String, Object> critere = new HashMap<String, Object>();
+    	critere.put("eventId", id);
+		List<EventsEntity> resultList = eventsJPA.search(critere);
+		return resultList;
+	}
+    
     public List<EventsEntity> getAllEventsParticipated(String userID) {
     	UsersPersistenceJPA userJPA = new UsersPersistenceJPA();
     	UsersEntity user = userJPA.load(Integer.parseInt(userID));
