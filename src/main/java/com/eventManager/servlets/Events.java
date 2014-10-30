@@ -57,6 +57,7 @@ public class Events extends HttpServlet {
 			
 			RequestDispatcher rd = request.getRequestDispatcher("jsp/EventsView.jsp");
 			rd.forward(request, response);
+			
 		}
 		else{
 			response.sendRedirect("");
