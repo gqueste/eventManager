@@ -33,6 +33,7 @@ import javax.persistence.TemporalType;
 import com.eventManager.persistence.services.jpa.EventsPersistenceJPA;
 import com.eventManager.persistence.services.jpa.InscriptionsPersistenceJPA;
 import com.eventManager.persistence.services.jpa.UsersPersistenceJPA;
+import com.eventManager.utils.RandomUtils;
 
 /**
  * Persistent class for entity stored in table "EVENTS"
@@ -206,19 +207,39 @@ public class EventsEntity implements Serializable {
         return sb.toString(); 
     } 
     
-    public void add(String userId, String nameEvent, String adressEvent, Timestamp debut, Timestamp fin, short published) {
-    	EventsPersistenceJPA service = new EventsPersistenceJPA();
-    	UsersPersistenceJPA service2 = new UsersPersistenceJPA();
+    public String add(String userId, String nameEvent, String adressEvent, Timestamp debut, Timestamp fin, short published) {
+    	EventsPersistenceJPA eventsJPA = new EventsPersistenceJPA();
+    	UsersPersistenceJPA eventsUsers = new UsersPersistenceJPA();
+    	RandomUtils randomizer = new RandomUtils();
+    	EventsEntity event = new EventsEntity();  	
+    	Date today = new Date();
     	
-    	EventsEntity event = new EventsEntity();
+    	if(debut.after(fin)){
+    		return "addFailed";
+    	}
+    	if(debut.before(today)||fin.before(today)){
+    		return "addFailed";
+    	}
     	event.setName(nameEvent);
     	event.setAddress(adressEvent);
     	event.setPublished(published);
     	event.setDateBeginning(debut);
     	event.setDateEnd(fin);
-    	event.setUrl("#"+nameEvent);
-    	event.setUsers(service2.load(Integer.parseInt(userId)));
-    	service.insert(event);
+    	
+    	String url = "event/"+randomizer.randomURL(); 
+    	List<EventsEntity> resultList = new ArrayList<EventsEntity>();
+    	Map<String, Object> critere = new HashMap<String, Object>();
+    	critere.put("url", url);
+		resultList = eventsJPA.search(critere);
+    	while(resultList.size()!=0){
+    		url = "event/"+randomizer.randomURL();
+	    	critere.put("url", url);
+			resultList = eventsJPA.search(critere);
+    	}
+    	event.setUrl(url);
+    	event.setUsers(eventsUsers.load(Integer.parseInt(userId)));
+    	eventsJPA.insert(event);
+    	return "addSuccess";
 	}
     
     public List<EventsEntity> getAllEventsCreated(String userId) {
@@ -258,13 +279,18 @@ public class EventsEntity implements Serializable {
     	EventsPersistenceJPA em = new EventsPersistenceJPA();
     	EventsEntity event = em.load(rowId);    	
 		if(event.getUsers().getUserId()==userId){
-			System.out.println(event.getName());
-			System.out.println(event.getEventId());
+			InscriptionsPersistenceJPA inscriptionsJPA = new InscriptionsPersistenceJPA();
+	    	HashMap<String, Object> critere = new HashMap<String, Object>();
+	    	critere.put("events", event);
+	    	List<InscriptionsEntity> result = inscriptionsJPA.search(critere);
+	    	for (InscriptionsEntity e : result){
+				inscriptionsJPA.delete(e);
+			}
 			em.delete(event);
-			return "success";
+			return "deleteSuccess";
 		}
 		else{
-			return "failed";
+			return "deleteFailed";
 		}
 	}
     
@@ -276,10 +302,10 @@ public class EventsEntity implements Serializable {
 			System.out.println(event.getEventId());
 			event.setPublished((short)1);
 			em.save(event);
-			return "success";
+			return "publishSuccess";
 		}
 		else{
-			return "failed";
+			return "publishFailed";
 		}
 	}
 }
