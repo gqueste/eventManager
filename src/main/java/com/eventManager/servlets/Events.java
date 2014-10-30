@@ -54,8 +54,10 @@ public class Events extends HttpServlet {
 			}
 			request.setAttribute("list", listEventsCreated);
 			request.setAttribute("listInscription", listEventsParticipated);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("jsp/EventsView.jsp");
 			rd.forward(request, response);
+			
 		}
 		else{
 			response.sendRedirect("");

@@ -27,7 +27,7 @@
 		});
 	});
 </script>
-<h1>Page de gestions des events v2</h1>
+<h1>Page de gestions des events</h1>
 <ul class="nav nav-tabs" role="tablist">
 	<li class="active"><a href="#participeIn" role="tab"
 		data-toggle="tab">Event I participe in</a></li>

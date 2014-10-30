@@ -39,7 +39,8 @@ public class DeleteEvents extends HttpServlet {
 			String userId = (String) session.getAttribute("user_id");
 			String rowId = request.getParameter("id");
 			EventsEntity event = new EventsEntity();
-			event.delete(Integer.parseInt(userId),Integer.parseInt(rowId));
+			String action;
+			action = event.delete(Integer.parseInt(userId),Integer.parseInt(rowId));
 			response.sendRedirect("");
 		}
 		else{
