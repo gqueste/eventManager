@@ -207,6 +207,12 @@ public class EventsEntity implements Serializable {
         return sb.toString(); 
     } 
     
+    public void addInscription(InscriptionsEntity inscription) {
+    	this.listOfInscriptions.add(inscription);
+    	EventsPersistenceJPA service = new EventsPersistenceJPA();
+    	service.save(this);
+    }
+    
     public String add(String userId, String nameEvent, String adressEvent, Timestamp debut, Timestamp fin, short published) {
     	EventsPersistenceJPA eventsJPA = new EventsPersistenceJPA();
     	UsersPersistenceJPA eventsUsers = new UsersPersistenceJPA();
