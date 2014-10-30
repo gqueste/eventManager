@@ -88,4 +88,14 @@
     <servlet-name>Event</servlet-name>
     <url-pattern>/event/*</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddInscriptionEvent</display-name>
+    <servlet-name>AddInscriptionEvent</servlet-name>
+    <servlet-class>com.eventManager.servlets.AddInscriptionEvent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddInscriptionEvent</servlet-name>
+    <url-pattern>/AddInscriptionEvent</url-pattern>
+  </servlet-mapping>
 </web-app>

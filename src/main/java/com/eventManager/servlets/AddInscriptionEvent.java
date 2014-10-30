@@ -37,21 +37,14 @@ public class AddInscriptionEvent extends HttpServlet {
 			HttpSession session;
 			session = request.getSession(false);
 			String userId = (String) session.getAttribute("user_id");
-			String rowId = request.getParameter("eventId");
-			EventsEntity event = new EventsEntity();
-			List<EventsEntity> listEvents = event.getEvent(rowId);
+			String eventId = request.getParameter("eventId");
+			
 			InscriptionsEntity inscription = new InscriptionsEntity();
 			UsersEntity users = new UsersEntity();
 			List<UsersEntity> listUsers = users.getUser(userId);
-			if (listUsers.size() == 1) {
-				inscription.setName(listUsers.get(0).getName());
-				inscription.setSurname(listUsers.get(0).getSurname());
-				inscription.setMail(listUsers.get(0).getMail());
-				if (listEvents.size() == 1)
-					inscription.setEvents(listEvents.get(0));
-//				event.addInscription(inscription);
-			}
-			response.sendRedirect("");
+			if (listUsers.size() == 1)
+				inscription.add(listUsers.get(0).getName(), listUsers.get(0).getSurname(), eventId, listUsers.get(0).getMail(), listUsers.get(0).getCompany());
+			response.sendRedirect("jsp/EventView.jsp");
 		}
 		else{
 			response.sendRedirect("");

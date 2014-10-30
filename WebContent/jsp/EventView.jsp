@@ -26,9 +26,12 @@
 	</p>
 
 	<c:if test="${userId != \"-1\"}">
-		<button type="button" class="btn btn-success" href="AddInscriptionEvent?eventID=${eventList.eventId}">
-			<span class="glyphicon glyphicon-ok"></span> S'inscrire à l'évênement
-		</button>
+		<a href="${pageContext.request.contextPath}/AddInscriptionEvent?eventId=${eventList.eventId}">
+			<button type="button" class="btn btn-success">
+				<span class="glyphicon glyphicon-ok"></span> S'inscrire à
+				l'évênement
+			</button>
+		</a>
 	</c:if>
 	<c:if test="${userId == \"-1\"}">
 		<button type="button" class="btn btn-success" onclick="showHideForm()">
