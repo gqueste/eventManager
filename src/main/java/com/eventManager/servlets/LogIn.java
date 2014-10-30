@@ -49,6 +49,7 @@ public class LogIn extends HttpServlet {
 		// gere la connexion
 		//TODO revenir à la page précédente (le mettre dans session : paramètre fiasco)
 		RequestDispatcher rd;
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession(false);
 		boolean redirectionFaite = false;		
 		

@@ -47,6 +47,7 @@ public class Register extends HttpServlet {
 
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
+		request.setCharacterEncoding("UTF-8");
 		boolean redirectionFaite = false;
 		if (ConnexionUtils.isSessionValid(request)) {
 			response.sendRedirect("");
