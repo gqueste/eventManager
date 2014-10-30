@@ -12,7 +12,19 @@ import java.io.Serializable;
 //import org.hibernate.validator.constraints.* ;
 
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.persistence.*;
+
+import com.eventManager.persistence.services.jpa.EventsPersistenceJPA;
+import com.eventManager.persistence.services.jpa.InscriptionsPersistenceJPA;
+import com.eventManager.persistence.services.jpa.UsersPersistenceJPA;
+import com.eventManager.utils.RandomUtils;
 
 /**
  * Persistent class for entity stored in table "INSCRIPTIONS"
@@ -148,4 +160,26 @@ public class InscriptionsEntity implements Serializable {
         return sb.toString(); 
     } 
 
+    
+    public String add(String nameUser, String surnameUser, String eventId, String mailUser, String companyUser) {
+    	InscriptionsPersistenceJPA inscriptionsJPA = new InscriptionsPersistenceJPA();
+    	UsersPersistenceJPA eventsUsers = new UsersPersistenceJPA();
+    	RandomUtils randomizer = new RandomUtils();
+    	InscriptionsEntity inscription = new InscriptionsEntity(); 
+
+    	EventsEntity event = new EventsEntity();
+		List<EventsEntity> listEvents = event.getEvent(eventId);
+    	
+    	inscription.setName(nameUser);
+    	inscription.setSurname(surnameUser);
+    	inscription.setCompany(companyUser);
+    	inscription.setMail(mailUser);
+    	inscription.setEvents(listEvents.get(0));
+    	
+    	inscriptionsJPA.insert(inscription);
+    	
+    	listEvents.get(0).addInscription(inscription);
+    	
+    	return "addSuccess";
+	}
 }

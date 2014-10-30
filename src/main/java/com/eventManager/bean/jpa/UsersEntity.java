@@ -17,9 +17,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.eventManager.persistence.services.jpa.EventsPersistenceJPA;
+import com.eventManager.persistence.services.jpa.UsersPersistenceJPA;
+
+import java.util.HashMap;
 //import javax.validation.constraints.* ;
 //import org.hibernate.validator.constraints.* ;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Persistent class for entity stored in table "USERS"
@@ -89,6 +95,14 @@ public class UsersEntity implements Serializable {
     	this.password = password;
     	this.company = company;
     }
+    
+    public List<UsersEntity> getUser(String id) {
+    	UsersPersistenceJPA usersJPA = new UsersPersistenceJPA();
+    	Map<String, Object> critere = new HashMap<String, Object>();
+    	critere.put("userId", id);
+		List<UsersEntity> resultList = usersJPA.search(critere);
+		return resultList;
+	}
     
     //----------------------------------------------------------------------
     // GETTER & SETTER FOR THE KEY FIELD

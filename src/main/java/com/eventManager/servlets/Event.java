@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.eventManager.bean.jpa.EventsEntity;
+import com.eventManager.bean.jpa.UsersEntity;
 import com.eventManager.utils.ConnexionUtils;
 
 /**
@@ -38,10 +39,11 @@ public class Event extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String userId = "-1";
 		if (ConnexionUtils.isSessionValid(request)) {
 			HttpSession session;
 			session = request.getSession(false);
-			String userId = (String) session.getAttribute("user_id");
+			userId = (String) session.getAttribute("user_id");
 		}
 		EventsEntity events = new EventsEntity();
 		String id = request.getPathInfo();
@@ -51,9 +53,15 @@ public class Event extends HttpServlet {
 			if (!idsplit[1].equals("*"))
 				eventId = idsplit[1];
 		List<EventsEntity> listEvents = events.getEvent(eventId);
+		UsersEntity users = new UsersEntity();
 		if (listEvents.size() == 0 || listEvents.size() > 1)
 			eventId = "-1";
-		request.setAttribute("events", listEvents);
+		else {
+			users = listEvents.get(0).getUsers();
+			request.setAttribute("events", listEvents);
+			request.setAttribute("users", users);
+			request.setAttribute("userId", userId);
+		}
 		if (eventId.equals("-1")) {
 			RequestDispatcher rd = request
 					.getRequestDispatcher("/jsp/error_404.jsp");
