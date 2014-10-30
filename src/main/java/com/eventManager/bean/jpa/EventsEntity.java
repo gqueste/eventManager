@@ -8,8 +8,6 @@ package com.eventManager.bean.jpa;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 //import javax.validation.constraints.* ;
 //import org.hibernate.validator.constraints.* ;
@@ -228,13 +226,13 @@ public class EventsEntity implements Serializable {
     	event.setDateBeginning(debut);
     	event.setDateEnd(fin);
     	
-    	String url = randomizer.randomURL(); 
+    	String url = "event/"+randomizer.randomURL(); 
     	List<EventsEntity> resultList = new ArrayList<EventsEntity>();
     	Map<String, Object> critere = new HashMap<String, Object>();
     	critere.put("url", url);
 		resultList = eventsJPA.search(critere);
     	while(resultList.size()!=0){
-    		url = randomizer.randomURL();
+    		url = "event/"+randomizer.randomURL();
 	    	critere.put("url", url);
 			resultList = eventsJPA.search(critere);
     	}
@@ -281,8 +279,13 @@ public class EventsEntity implements Serializable {
     	EventsPersistenceJPA em = new EventsPersistenceJPA();
     	EventsEntity event = em.load(rowId);    	
 		if(event.getUsers().getUserId()==userId){
-			System.out.println(event.getName());
-			System.out.println(event.getEventId());
+			InscriptionsPersistenceJPA inscriptionsJPA = new InscriptionsPersistenceJPA();
+	    	HashMap<String, Object> critere = new HashMap<String, Object>();
+	    	critere.put("events", event);
+	    	List<InscriptionsEntity> result = inscriptionsJPA.search(critere);
+	    	for (InscriptionsEntity e : result){
+				inscriptionsJPA.delete(e);
+			}
 			em.delete(event);
 			return "deleteSuccess";
 		}
