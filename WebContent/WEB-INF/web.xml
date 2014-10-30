@@ -78,4 +78,14 @@
     <servlet-name>PublishEvent</servlet-name>
     <url-pattern>/PublishEvent</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Event</display-name>
+    <servlet-name>Event</servlet-name>
+    <servlet-class>com.eventManager.servlets.Event</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Event</servlet-name>
+    <url-pattern>/event/*</url-pattern>
+  </servlet-mapping>
 </web-app>
