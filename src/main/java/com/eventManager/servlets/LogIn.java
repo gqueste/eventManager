@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.eventManager.bean.jpa.UsersEntity;
 import com.eventManager.persistence.services.jpa.UsersPersistenceJPA;
 import com.eventManager.utils.ConnexionUtils;
+import com.eventManager.utils.LastURLVisited;
 
 /**
  * Servlet implementation class LogIn
@@ -49,11 +50,13 @@ public class LogIn extends HttpServlet {
 		// gere la connexion
 		//TODO revenir à la page précédente (le mettre dans session : paramètre fiasco)
 		RequestDispatcher rd;
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession(false);
 		boolean redirectionFaite = false;		
 		
 		if (ConnexionUtils.isSessionValid(request)) {
-			response.sendRedirect("");
+			redirectionFaite = true;
+			response.sendRedirect(LastURLVisited.getInstance().getLastUrl());
 		}
 		else {
 			//pas encore connecté
@@ -103,7 +106,7 @@ public class LogIn extends HttpServlet {
 							
 							//redirection à l'adresse voulue
 							redirectionFaite = true;
-							response.sendRedirect("");
+							response.sendRedirect(LastURLVisited.getInstance().getLastUrl());
 						}
 					}
 				}

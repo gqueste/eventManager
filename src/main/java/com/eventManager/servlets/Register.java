@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.eventManager.bean.jpa.UsersEntity;
 import com.eventManager.persistence.services.jpa.UsersPersistenceJPA;
 import com.eventManager.utils.ConnexionUtils;
+import com.eventManager.utils.LastURLVisited;
 
 /**
  * Servlet implementation class Register
@@ -47,9 +48,11 @@ public class Register extends HttpServlet {
 
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
+		request.setCharacterEncoding("UTF-8");
 		boolean redirectionFaite = false;
 		if (ConnexionUtils.isSessionValid(request)) {
-			response.sendRedirect("");
+			redirectionFaite = true;
+			response.sendRedirect(LastURLVisited.getInstance().getLastUrl());
 		}else {
 			rd = request.getRequestDispatcher(ConnexionUtils.REGISTER_VIEW);
 
@@ -100,7 +103,7 @@ public class Register extends HttpServlet {
 						
 						//redirection à l'adresse voulue
 						redirectionFaite = true;
-						response.sendRedirect("");
+						response.sendRedirect(LastURLVisited.getInstance().getLastUrl());
 					}
 				}
 			}

@@ -98,4 +98,13 @@
     <servlet-name>AddInscriptionEvent</servlet-name>
     <url-pattern>/AddInscriptionEvent</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>PublishedFilter</display-name>
+    <filter-name>PublishedFilter</filter-name>
+    <filter-class>com.eventManager.servlets.PublishedFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>PublishedFilter</filter-name>
+    <servlet-name>Event</servlet-name>
+  </filter-mapping>
 </web-app>
