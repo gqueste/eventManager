@@ -53,8 +53,8 @@
 				<tr>
 					<td><c:out value="${inscription.name} " /></td>
 					<td><c:out value="${inscription.address} " /></td>
-					<td><a href="${inscription.url}"><c:out
-								value="${inscription.url} " /></a></td>
+					<td><a href="event/${inscription.url}"><c:out
+								value="event/${inscription.url} " /></a></td>
 					<td><c:out value="${inscription.dateBeginning} " /></td>
 					<td><c:out value="${inscription.dateEnd} " /></td>
 
@@ -77,8 +77,8 @@
 				<tr>
 					<td><c:out value="${eventList.name} " /></td>
 					<td><c:out value="${eventList.address} " /></td>
-					<td><a href="${eventList.url}"><c:out
-								value="${eventList.url} " /></a></td>
+					<td><a href="event/${eventList.url}"><c:out
+								value="event/${eventList.url} " /></a></td>
 					<td><c:out value="${eventList.dateBeginning} " /></td>
 					<td><c:out value="${eventList.dateEnd} " /></td>
 					<td><c:if test="${eventList.published==0}">

@@ -232,13 +232,13 @@ public class EventsEntity implements Serializable {
     	event.setDateBeginning(debut);
     	event.setDateEnd(fin);
     	
-    	String url = "event/"+randomizer.randomURL(); 
+    	String url = randomizer.randomURL(); 
     	List<EventsEntity> resultList = new ArrayList<EventsEntity>();
     	Map<String, Object> critere = new HashMap<String, Object>();
     	critere.put("url", url);
 		resultList = eventsJPA.search(critere);
     	while(resultList.size()!=0){
-    		url = "event/"+randomizer.randomURL();
+    		url = randomizer.randomURL();
 	    	critere.put("url", url);
 			resultList = eventsJPA.search(critere);
     	}
