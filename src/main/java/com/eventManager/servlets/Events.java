@@ -80,6 +80,7 @@ public class Events extends HttpServlet {
 	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 		HttpSession session;
 		session = request.getSession(false);
+		request.setCharacterEncoding("UTF-8");
 		RequestDispatcher rd;
 		rd = request.getRequestDispatcher(EVENTS_VIEW);
 		String userId = (String) session.getAttribute("user_id");
