@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.eventManager.bean.jpa.EventsEntity;
+import com.eventManager.bean.jpa.InscriptionsEntity;
 import com.eventManager.bean.jpa.UsersEntity;
 import com.eventManager.utils.ConnexionUtils;
 
@@ -54,12 +55,16 @@ public class Event extends HttpServlet {
 				eventId = idsplit[1];
 		List<EventsEntity> listEvents = events.getEvent(eventId);
 		UsersEntity users = new UsersEntity();
-		if (listEvents.size() == 0 || listEvents.size() > 1)
+		List<InscriptionsEntity> inscriptions = null;
+		if (listEvents.size() == 0 || listEvents.size() > 1) {
 			eventId = "-1";
+			inscriptions = listEvents.get(0).getListOfInscriptions();
+		}
 		else {
 			users = listEvents.get(0).getUsers();
 			request.setAttribute("events", listEvents);
 			request.setAttribute("users", users);
+			request.setAttribute("inscriptions", inscriptions);
 			request.setAttribute("userId", userId);
 		}
 		if (eventId.equals("-1")) {

@@ -1,5 +1,5 @@
 <%@ include file="../WEB-INF/jspf/header.jspf"%>
-
+<div class="col-sm-4">
 <c:forEach items="${events}" var="eventList">
 	<h2>
 		<c:out value="${eventList.name} " />
@@ -26,7 +26,8 @@
 	</p>
 
 	<c:if test="${userId != \"-1\"}">
-		<a href="${pageContext.request.contextPath}/AddInscriptionEvent?eventId=${eventList.eventId}">
+		<a
+			href="${pageContext.request.contextPath}/AddInscriptionEvent?eventId=${eventList.eventId}">
 			<button type="button" class="btn btn-success">
 				<span class="glyphicon glyphicon-ok"></span> S'inscrire à
 				l'évênement
@@ -39,12 +40,27 @@
 		</button>
 	</c:if>
 	<div id="inscriptionForm" style="display: none;">
-		<p>
-			<a href="${pageContext.request.contextPath}/login"
-				style="cursor: pointer;">Déjà un compte ? Connectez vous !</a>
-		</p>
+		<fieldset>
+			<legend>S'inscrire</legend>
+			<p>
+				<a href="${pageContext.request.contextPath}/login"
+					style="cursor: pointer;">Déjà un compte ? Connectez vous !</a>
+			</p>
+			<form role="form"
+				action="${pageContext.request.contextPath}/AddInscriptionEvent?eventId=${eventList.eventId}"
+				method="post">
+				<div class="form-group">
+					<label for="inscriptionUserName">Nom</label> <input type="text"
+						class="form-control" id="inscriptionUserName" name="inscription"
+						required value="${inscription}">
+				</div>
+
+			</form>
+		</fieldset>
 	</div>
 </c:forEach>
+</div>
+<div class="col-sm-6">Liste des participants</div>
 
 <script type="text/javascript">
 	var showHideForm = function() {
