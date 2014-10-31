@@ -36,7 +36,9 @@ public class PublishEvent extends HttpServlet {
 			String userId = (String) session.getAttribute("user_id");
 			String rowId = request.getParameter("id");
 			EventsEntity event = new EventsEntity();
-			event.publish(Integer.parseInt(userId),Integer.parseInt(rowId));
+			String action;
+			action = event.publish(Integer.parseInt(userId),Integer.parseInt(rowId));
+			session.setAttribute("lastAction", action);
 			response.sendRedirect("");
 		}
 		else{

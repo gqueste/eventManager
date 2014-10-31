@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import com.eventManager.bean.jpa.EventsEntity;
 import com.eventManager.utils.ConnexionUtils;
+import com.eventManager.utils.LastActionRealised;
 
 /**
  * Servlet implementation class Events
@@ -52,12 +53,12 @@ public class Events extends HttpServlet {
 				System.out.println(e.getName());
 				System.out.println(e.getUrl());
 			}
+			request.setAttribute("lastAction", session.getAttribute("lastAction"));
 			request.setAttribute("list", listEventsCreated);
 			request.setAttribute("listInscription", listEventsParticipated);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("jsp/EventsView.jsp");
 			rd.forward(request, response);
-			
 		}
 		else{
 			response.sendRedirect("");
@@ -97,7 +98,9 @@ public class Events extends HttpServlet {
 	    Timestamp timestampDebut = new java.sql.Timestamp(parsedDateDeb.getTime());
 	    Timestamp timestampFin = new java.sql.Timestamp(parsedDateFin.getTime());
 		EventsEntity event = new EventsEntity();
-		event.add(userId, nameEvent, adressEvent, timestampDebut, timestampFin, published);
+		String action;
+		action = event.add(userId, nameEvent, adressEvent, timestampDebut, timestampFin, published);
+		session.setAttribute("lastAction", action);
 		System.out.println(nameEvent);
 		System.out.println(adressEvent);
 		response.sendRedirect("");

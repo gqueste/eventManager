@@ -221,10 +221,10 @@ public class EventsEntity implements Serializable {
     	Date today = new Date();
     	
     	if(debut.after(fin)){
-    		return "addFailed";
+    		return "addFailedBBE";
     	}
     	if(debut.before(today)||fin.before(today)){
-    		return "addFailed";
+    		return "addFailedBEBT";
     	}
     	event.setName(nameEvent);
     	event.setAddress(adressEvent);
