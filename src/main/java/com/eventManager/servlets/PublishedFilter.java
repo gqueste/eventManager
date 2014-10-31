@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.eventManager.bean.jpa.EventsEntity;
 import com.eventManager.persistence.services.jpa.EventsPersistenceJPA;
+import com.eventManager.utils.LastURLVisited;
 
 /**
  * Servlet Filter implementation class PublishedFilter
@@ -45,6 +46,7 @@ public class PublishedFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse rep = (HttpServletResponse) response;
 		RequestDispatcher rd;
+		LastURLVisited.getInstance().setLastUrl(req.getRequestURL().toString());
 		
 		EventsPersistenceJPA eventJPA = new EventsPersistenceJPA();
 		EventsEntity event = new EventsEntity();
