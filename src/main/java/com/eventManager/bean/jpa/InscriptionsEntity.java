@@ -163,22 +163,20 @@ public class InscriptionsEntity implements Serializable {
     
     public String add(String nameUser, String surnameUser, String eventId, String mailUser, String companyUser) {
     	InscriptionsPersistenceJPA inscriptionsJPA = new InscriptionsPersistenceJPA();
-    	UsersPersistenceJPA eventsUsers = new UsersPersistenceJPA();
-    	RandomUtils randomizer = new RandomUtils();
     	InscriptionsEntity inscription = new InscriptionsEntity(); 
 
-    	EventsEntity event = new EventsEntity();
-		List<EventsEntity> listEvents = event.getEvent(eventId);
+    	EventsEntity events = new EventsEntity();
+    	EventsEntity event = events.getEvent(eventId);
     	
     	inscription.setName(nameUser);
     	inscription.setSurname(surnameUser);
     	inscription.setCompany(companyUser);
     	inscription.setMail(mailUser);
-    	inscription.setEvents(listEvents.get(0));
+    	inscription.setEvents(event);
     	
     	inscriptionsJPA.insert(inscription);
     	
-    	listEvents.get(0).addInscription(inscription);
+    	event.addInscription(inscription, eventId);
     	
     	return "addSuccess";
 	}

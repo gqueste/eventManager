@@ -46,36 +46,37 @@ public class Event extends HttpServlet {
 			session = request.getSession(false);
 			userId = (String) session.getAttribute("user_id");
 		}
-		EventsEntity events = new EventsEntity();
-		String id = request.getPathInfo();
-		String[] idsplit = id.split("/");
-		String eventId = "-1";
-		if (idsplit.length == 2)
-			if (!idsplit[1].equals("*"))
-				eventId = idsplit[1];
-		List<EventsEntity> listEvents = events.getEvent(eventId);
+//		EventsEntity events = new EventsEntity();
+		EventsEntity event = (EventsEntity) request.getAttribute("event");
+//		String id = request.getPathInfo();
+//		String[] idsplit = id.split("/");
+//		String eventId = "-1";
+//		if (idsplit.length == 2)
+//			if (!idsplit[1].equals("*"))
+//				eventId = idsplit[1];
+//		List<EventsEntity> listEvents = events.getEvent(eventId);
 		UsersEntity users = new UsersEntity();
 		List<InscriptionsEntity> inscriptions = null;
-		if (listEvents.size() == 0 || listEvents.size() > 1) {
-			eventId = "-1";
-			inscriptions = listEvents.get(0).getListOfInscriptions();
-		}
-		else {
-			users = listEvents.get(0).getUsers();
-			request.setAttribute("events", listEvents);
+//		if (listEvents.size() == 0 || listEvents.size() > 1) {
+//			eventId = "-1";
+			inscriptions = event.getListOfInscriptions();
+//		}
+//		else {
+			users = event.getUsers();
+			request.setAttribute("event", event);
 			request.setAttribute("users", users);
 			request.setAttribute("inscriptions", inscriptions);
 			request.setAttribute("userId", userId);
-		}
-		if (eventId.equals("-1")) {
-			RequestDispatcher rd = request
-					.getRequestDispatcher("/jsp/error_404.jsp");
-			rd.forward(request, response);
-		} else {
+//		}
+//		if (eventId.equals("-1")) {
+//			RequestDispatcher rd = request
+//					.getRequestDispatcher("/jsp/error_404.jsp");
+//			rd.forward(request, response);
+//		} else {
 			RequestDispatcher rd = request
 					.getRequestDispatcher("/jsp/EventView.jsp");
 			rd.forward(request, response);
-		}
+//		}
 	}
 
 	/**

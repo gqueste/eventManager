@@ -1,8 +1,8 @@
 <%@ include file="../WEB-INF/jspf/header.jspf"%>
 <div class="col-sm-4">
-<c:forEach items="${events}" var="eventList">
+<%-- <c:forEach items="${events}" var="eventList"> --%>
 	<h2>
-		<c:out value="${eventList.name} " />
+		<c:out value="${event.name} " />
 	</h2>
 	<p>
 		<span class="glyphicon glyphicon-user"></span> Evênement créé par
@@ -13,21 +13,21 @@
 	</p>
 	<p>
 		<span class="glyphicon glyphicon-map-marker"></span>
-		<c:out value="${eventList.address}" />
+		<c:out value="${event.address}" />
 	</p>
 	<p>
 		<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 		<span class="glyphicon glyphicon-time"></span> Du
-		<fmt:formatDate value="${eventList.dateBeginning}"
+		<fmt:formatDate value="${event.dateBeginning}"
 			pattern="dd/MM/yyyy HH:mm" />
 		au
-		<fmt:formatDate value="${eventList.dateEnd}"
+		<fmt:formatDate value="${event.dateEnd}"
 			pattern="dd/MM/yyyy HH:mm" />
 	</p>
 
 	<c:if test="${userId != \"-1\"}">
 		<a
-			href="${pageContext.request.contextPath}/AddInscriptionEvent?eventId=${eventList.eventId}">
+			href="${pageContext.request.contextPath}/AddInscriptionEvent?eventId=${event.eventId}">
 			<button type="button" class="btn btn-success">
 				<span class="glyphicon glyphicon-ok"></span> S'inscrire à
 				l'évênement
@@ -47,7 +47,7 @@
 					style="cursor: pointer;">Déjà un compte ? Connectez vous !</a>
 			</p>
 			<form role="form"
-				action="${pageContext.request.contextPath}/AddInscriptionEvent?eventId=${eventList.eventId}"
+				action="${pageContext.request.contextPath}/AddInscriptionEvent?eventId=${event.eventId}"
 				method="post">
 				<div class="form-group">
 					<label for="inscriptionUserName">Nom</label> <input type="text"
@@ -58,7 +58,7 @@
 			</form>
 		</fieldset>
 	</div>
-</c:forEach>
+<%-- </c:forEach> --%>
 </div>
 <div class="col-sm-6">Liste des participants</div>
 
