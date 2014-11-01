@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.eventManager.utils.ConnexionUtils;
-import com.eventManager.utils.LastURLVisited;
 
 /**
  * Servlet Filter implementation class ConnexionFilter
@@ -40,7 +39,7 @@ public class ConnexionFilter implements Filter {
 		// place your code here
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse rep = (HttpServletResponse) response;
-		LastURLVisited.getInstance().setLastUrl(req.getRequestURL().toString());
+		ConnexionUtils.setLastUrlVisited(req, req.getRequestURL().toString());
 		
 		if (! ConnexionUtils.isSessionValid(req) ) {
 			rep.sendRedirect(req.getContextPath() + "/login");

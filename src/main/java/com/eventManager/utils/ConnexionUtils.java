@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 public class ConnexionUtils {
 	
 	public static final String SESSION_USER_ATTRIBUTE = "user_id";
+	public static final String SESSION_LAST_URL = "lastUrl";
 	
 	public static final String LOGIN_VIEW = "jsp/LogInView.jsp";
 	public static final String REGISTER_VIEW = "jsp/RegisterView.jsp";	
@@ -38,5 +39,22 @@ public class ConnexionUtils {
 			}
 		}
 		return ret;
+	}
+	
+	public static String getLastUrlVisited(HttpServletRequest request) {
+		String ret = "";
+		HttpSession session = request.getSession();
+		if(session != null) {
+			String lastUrl = (String) session.getAttribute(SESSION_LAST_URL);
+			if(lastUrl != null) {
+				ret = lastUrl;
+			}
+		}
+		return ret;
+	}
+	
+	public static void setLastUrlVisited(HttpServletRequest request, String url) {
+		HttpSession session = request.getSession();
+		session.setAttribute(SESSION_LAST_URL, url);
 	}
 }

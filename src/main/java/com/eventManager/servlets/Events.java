@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 
 import com.eventManager.bean.jpa.EventsEntity;
 import com.eventManager.utils.ConnexionUtils;
-import com.eventManager.utils.LastActionRealised;
 
 /**
  * Servlet implementation class Events

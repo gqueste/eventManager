@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.eventManager.utils.ConnexionUtils;
-import com.eventManager.utils.LastURLVisited;
 
 /**
  * Servlet implementation class LogOut
@@ -45,7 +44,7 @@ public class LogOut extends HttpServlet {
 			session.invalidate();
 			System.out.println("Session détruite");
 		}
-		response.sendRedirect(LastURLVisited.getInstance().getLastUrl());		
+		response.sendRedirect(ConnexionUtils.getLastUrlVisited(request));
 	}
 
 }
