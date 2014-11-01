@@ -207,11 +207,20 @@ public class EventsEntity implements Serializable {
         return sb.toString(); 
     } 
     
-    public void addInscription(InscriptionsEntity inscription) {
-    	this.listOfInscriptions.add(inscription);
-    	EventsPersistenceJPA service = new EventsPersistenceJPA();
-    	service.save(this);
-    }
+    public void addInscription(InscriptionsEntity inscription, String eventId) {
+		EventsEntity events = new EventsEntity();
+		EventsEntity event = events.getEvent(eventId);
+		if (event != null) {
+			ArrayList<InscriptionsEntity> listInscrits = new ArrayList<InscriptionsEntity>();
+			if (event.getListOfInscriptions() != null)
+				for (int i = 0; i < event.getListOfInscriptions().size(); i++)
+					listInscrits.add(event.getListOfInscriptions().get(i));
+			listInscrits.add(inscription);
+			event.setListOfInscriptions(listOfInscriptions);
+			EventsPersistenceJPA service = new EventsPersistenceJPA();
+			service.save(this);
+		}
+	}
     
     public String add(String userId, String nameEvent, String adressEvent, Timestamp debut, Timestamp fin, short published) {
     	EventsPersistenceJPA eventsJPA = new EventsPersistenceJPA();
@@ -258,12 +267,23 @@ public class EventsEntity implements Serializable {
 		return resultList;
 	}
     
-    public List<EventsEntity> getEvent(String id) {
-    	EventsPersistenceJPA eventsJPA = new EventsPersistenceJPA();
-    	Map<String, Object> critere = new HashMap<String, Object>();
-    	critere.put("eventId", id);
+    public List<EventsEntity> getEvents(String id) {
+		EventsPersistenceJPA eventsJPA = new EventsPersistenceJPA();
+		Map<String, Object> critere = new HashMap<String, Object>();
+		critere.put("eventId", id);
 		List<EventsEntity> resultList = eventsJPA.search(critere);
 		return resultList;
+	}
+
+	public EventsEntity getEvent(String id) {
+		EventsPersistenceJPA eventsJPA = new EventsPersistenceJPA();
+		Map<String, Object> critere = new HashMap<String, Object>();
+		critere.put("eventId", id);
+		List<EventsEntity> resultList = eventsJPA.search(critere);
+		if (resultList.size() >= 1)
+			return resultList.get(0);
+		else
+			return null;
 	}
     
     public List<EventsEntity> getAllEventsParticipated(String userID) {
