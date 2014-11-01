@@ -44,7 +44,7 @@ public class LogOut extends HttpServlet {
 			session.invalidate();
 			System.out.println("Session détruite");
 		}
-		response.sendRedirect("");		
+		response.sendRedirect(ConnexionUtils.getLastUrlVisited(request));
 	}
 
 }

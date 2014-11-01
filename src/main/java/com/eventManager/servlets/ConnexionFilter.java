@@ -39,6 +39,7 @@ public class ConnexionFilter implements Filter {
 		// place your code here
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse rep = (HttpServletResponse) response;
+		ConnexionUtils.setLastUrlVisited(req, req.getRequestURL().toString());
 		
 		if (! ConnexionUtils.isSessionValid(req) ) {
 			rep.sendRedirect(req.getContextPath() + "/login");

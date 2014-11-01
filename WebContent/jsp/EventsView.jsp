@@ -27,6 +27,79 @@
 		});
 	});
 </script>
+<c:if test='${lastAction=="registerOK"}'>
+<div class="alert alert-success" role="alert">Bienvenue sur l'espace de gestion de vos événements !
+	<button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+    </button>
+</div>
+</c:if>
+<c:if test='${lastAction=="connexionOK"}'>
+<div class="alert alert-success" role="alert">Vous êtes connecté !
+	<button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+    </button>
+</div>
+</c:if>
+<c:if test='${lastAction=="publishSuccess"}'>
+<div class="alert alert-success" role="alert">Publication effectuée avec succès !
+	<button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+    </button>
+</div>
+</c:if>
+<c:if test='${lastAction=="publishFailed"}'>
+<div class="alert alert-danger" role="alert">Publication echouée ! Vous n'avez pas les droits pour publier cet event !
+	<button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+    </button>
+</div>
+</c:if>
+<c:if test='${lastAction=="deleteSuccess"}'>
+<div class="alert alert-success" role="alert">Suppression effectuée avec succès !
+	<button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+    </button>
+</div>
+</c:if>
+<c:if test='${lastAction=="deleteFailed"}'>
+<div class="alert alert-danger" role="alert">Suppression echouée ! Vous n'avez pas les droits pour supprimer cet event !
+	<button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+    </button>
+</div>
+</c:if>
+<c:if test='${lastAction=="addSuccess"}'>
+<div class="alert alert-success" role="alert">Ajout effectué avec succès !
+	<button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+    </button>
+</div>
+</c:if>
+<c:if test='${lastAction=="addFailedBBE"}'>
+<div class="alert alert-danger" role="alert">Ajout echouée ! La date de fin de l'event est antérieur à sa date de début !
+	<button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+    </button>
+</div>
+</c:if>
+<c:if test='${lastAction=="addFailedBEBT"}'>
+<div class="alert alert-danger" role="alert">Suppression echouée ! La date de début ou de fin de l'event est antérieur à maintenant !
+	<button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+    </button>
+</div>
+</c:if>
+
 <h1>Page de gestions des events</h1>
 <ul class="nav nav-tabs" role="tablist">
 	<li class="active"><a href="#participeIn" role="tab"

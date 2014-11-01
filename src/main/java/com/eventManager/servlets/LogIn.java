@@ -54,7 +54,8 @@ public class LogIn extends HttpServlet {
 		boolean redirectionFaite = false;		
 		
 		if (ConnexionUtils.isSessionValid(request)) {
-			response.sendRedirect("");
+			redirectionFaite = true;
+			response.sendRedirect(ConnexionUtils.getLastUrlVisited(request));
 		}
 		else {
 			//pas encore connecté
@@ -101,10 +102,11 @@ public class LogIn extends HttpServlet {
 							//ConnectionOK
 							session = request.getSession(true);
 							session.setAttribute(ConnexionUtils.SESSION_USER_ATTRIBUTE, user.getUserId().toString());
+							session.setAttribute(ConnexionUtils.SESSION_LAST_ACTION, "connexionOK");
 							
 							//redirection à l'adresse voulue
 							redirectionFaite = true;
-							response.sendRedirect("");
+							response.sendRedirect(ConnexionUtils.getLastUrlVisited(request));
 						}
 					}
 				}

@@ -50,7 +50,8 @@ public class Register extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		boolean redirectionFaite = false;
 		if (ConnexionUtils.isSessionValid(request)) {
-			response.sendRedirect("");
+			redirectionFaite = true;
+			response.sendRedirect(ConnexionUtils.getLastUrlVisited(request));
 		}else {
 			rd = request.getRequestDispatcher(ConnexionUtils.REGISTER_VIEW);
 
@@ -98,10 +99,11 @@ public class Register extends HttpServlet {
 						//insertion ok
 						HttpSession session = request.getSession(true);
 						session.setAttribute(ConnexionUtils.SESSION_USER_ATTRIBUTE, ((Integer)user_id).toString());
+						session.setAttribute(ConnexionUtils.SESSION_LAST_ACTION, "registerOK");
 						
 						//redirection à l'adresse voulue
 						redirectionFaite = true;
-						response.sendRedirect("");
+						response.sendRedirect(ConnexionUtils.getLastUrlVisited(request));
 					}
 				}
 			}
