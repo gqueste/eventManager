@@ -99,6 +99,7 @@ public class Register extends HttpServlet {
 						//insertion ok
 						HttpSession session = request.getSession(true);
 						session.setAttribute(ConnexionUtils.SESSION_USER_ATTRIBUTE, ((Integer)user_id).toString());
+						session.setAttribute(ConnexionUtils.SESSION_LAST_ACTION, "registerOK");
 						
 						//redirection à l'adresse voulue
 						redirectionFaite = true;

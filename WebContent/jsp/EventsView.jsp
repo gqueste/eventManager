@@ -27,6 +27,22 @@
 		});
 	});
 </script>
+<c:if test='${lastAction=="registerOK"}'>
+<div class="alert alert-success" role="alert">Bienvenue sur l'espace de gestion de vos événements !
+	<button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+    </button>
+</div>
+</c:if>
+<c:if test='${lastAction=="connexionOK"}'>
+<div class="alert alert-success" role="alert">Vous êtes connecté !
+	<button type="button" class="close" data-dismiss="alert">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+    </button>
+</div>
+</c:if>
 <c:if test='${lastAction=="publishSuccess"}'>
 <div class="alert alert-success" role="alert">Publication effectuée avec succès !
 	<button type="button" class="close" data-dismiss="alert">

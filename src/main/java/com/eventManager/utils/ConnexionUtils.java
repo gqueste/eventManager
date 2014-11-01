@@ -7,6 +7,7 @@ public class ConnexionUtils {
 	
 	public static final String SESSION_USER_ATTRIBUTE = "user_id";
 	public static final String SESSION_LAST_URL = "lastUrl";
+	public static final String SESSION_LAST_ACTION = "lastAction";
 	
 	public static final String LOGIN_VIEW = "jsp/LogInView.jsp";
 	public static final String REGISTER_VIEW = "jsp/RegisterView.jsp";	

@@ -52,7 +52,7 @@ public class Events extends HttpServlet {
 				System.out.println(e.getName());
 				System.out.println(e.getUrl());
 			}
-			request.setAttribute("lastAction", session.getAttribute("lastAction"));
+			request.setAttribute("lastAction", session.getAttribute(ConnexionUtils.SESSION_LAST_ACTION));
 			request.setAttribute("list", listEventsCreated);
 			request.setAttribute("listInscription", listEventsParticipated);
 			
@@ -100,7 +100,7 @@ public class Events extends HttpServlet {
 		EventsEntity event = new EventsEntity();
 		String action;
 		action = event.add(userId, nameEvent, adressEvent, timestampDebut, timestampFin, published);
-		session.setAttribute("lastAction", action);
+		session.setAttribute(ConnexionUtils.SESSION_LAST_ACTION, action);
 		System.out.println(nameEvent);
 		System.out.println(adressEvent);
 		response.sendRedirect("");
