@@ -159,6 +159,11 @@ public class InscriptionsEntity implements Serializable {
 		return sb.toString();
 	}
 
+	/**
+	 * Get all InscriptionEntity which correspond to an event
+	 * @param events
+	 * @return list of InscriptionEntity
+	 */
 	public List<InscriptionsEntity> getInscriptions(EventsEntity events) {
 		InscriptionsPersistenceJPA inscriptionsJPA = new InscriptionsPersistenceJPA();
 		Map<String, Object> critere = new HashMap<String, Object>();
@@ -167,6 +172,15 @@ public class InscriptionsEntity implements Serializable {
 		return resultList;
 	}
 
+	/**
+	 * Add an Inscription in the database
+	 * @param nameUser
+	 * @param surnameUser
+	 * @param eventId
+	 * @param mailUser
+	 * @param companyUser
+	 * @return message
+	 */
 	public String add(String nameUser, String surnameUser, String eventId,
 			String mailUser, String companyUser) {
 		InscriptionsPersistenceJPA inscriptionsJPA = new InscriptionsPersistenceJPA();
