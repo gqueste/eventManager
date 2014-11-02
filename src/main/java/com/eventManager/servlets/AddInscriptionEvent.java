@@ -43,6 +43,7 @@ public class AddInscriptionEvent extends HttpServlet {
 		EventsEntity event = events.getEvent(eventId);
 		RequestDispatcher rd;
 		request.setCharacterEncoding("UTF-8");
+		request.setAttribute("event", event);
 		UsersEntity users = new UsersEntity();
 		if (ConnexionUtils.isSessionValid(request)) {
 			HttpSession session;
@@ -52,7 +53,6 @@ public class AddInscriptionEvent extends HttpServlet {
 			lastAction = inscription.add(user.getName(), user.getSurname(),
 					eventId, user.getMail(), user.getCompany());
 			request.setAttribute("lastActionEvent", lastAction);
-			request.setAttribute("event", event);
 			rd = request.getRequestDispatcher("event/" + event.getUrl());
 			rd.forward(request, response);
 		} else {
@@ -66,7 +66,6 @@ public class AddInscriptionEvent extends HttpServlet {
 			else 
 				lastAction = inscription.add(name, surname, eventId, mail, societe);
 			request.setAttribute("lastActionEvent", lastAction);
-			request.setAttribute("event", event);
 			rd = request.getRequestDispatcher("event/" + event.getUrl());
 			rd.forward(request, response);
 		}

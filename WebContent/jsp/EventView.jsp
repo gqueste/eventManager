@@ -22,7 +22,7 @@
 		au
 		<fmt:formatDate value="${event.dateEnd}" pattern="dd/MM/yyyy HH:mm" />
 	</p>
-	<div class="blank"> </div>
+	<div class="blank"></div>
 	<c:if test='${lastActionEvent=="addSuccess"}'>
 		<div class="alert alert-success" role="alert">
 			Ajout effectué avec succès !
@@ -55,7 +55,6 @@
 			</button>
 		</div>
 	</c:if>
-	<c:out value="${lastAction}"></c:out>
 	<c:if test="${userId != \"-1\"}">
 		<a
 			href="${pageContext.request.contextPath}/AddInscriptionEvent?eventId=${event.eventId}">
@@ -97,7 +96,8 @@
 						<input type="text" class="form-control inputRegisterEvent"
 							name="inscriptionUserSociete" required value="${societe}">
 					</div>
-					<button type="submit" style="float: right; margin-bottom: 20px;"
+					<button type="submit"
+						style="float: right; margin-bottom: 20px; margin-right: 35px;"
 						class="btn btn-success">S'inscrire</button>
 				</form>
 			</fieldset>
@@ -106,16 +106,21 @@
 </div>
 <div class="col-sm-7 eventRightColumn">
 	<h4>Liste des participants</h4>
-	<table class="table table-condensed">
-		<c:forEach items="${inscriptions}" var="inscriptionsList">
-			<tr>
-				<td><c:out value="${inscriptionsList.name}" /></td>
-				<td><c:out value="${inscriptionsList.surname}" /></td>
-				<td><c:out value="${inscriptionsList.mail}" /></td>
-				<td><c:out value="${inscriptionsList.company}" /></td>
-			</tr>
-		</c:forEach>
-	</table>
+	<c:if test="${not empty inscriptions}">
+		<table class="table table-condensed">
+			<c:forEach items="${inscriptions}" var="inscriptionsList">
+				<tr>
+					<td><c:out value="${inscriptionsList.name}" /></td>
+					<td><c:out value="${inscriptionsList.surname}" /></td>
+					<td><c:out value="${inscriptionsList.mail}" /></td>
+					<td><c:out value="${inscriptionsList.company}" /></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</c:if>
+	<c:if test="${empty inscriptions}">
+		<p>Aucun inscrit à cet évênement pour le moment.</p>
+	</c:if>
 </div>
 
 

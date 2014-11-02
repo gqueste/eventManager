@@ -29,6 +29,17 @@ label.labelRegisterEvent {
 	padding-right: 7px;
 }
 
+input.inputEvents {
+	display: inline-block;
+	width: 84%;
+}
+
+label.labelEvents {
+	width: 15%;
+	text-align: right;
+	padding-right: 7px;
+}
+
 .eventLeftColumn {
 	background-color: #fcfcfc;
 	box-shadow: 1px 1px 1px 1px #f1f1f1;
@@ -42,4 +53,30 @@ label.labelRegisterEvent {
 
 .eventRightColumn table tr td {
 	padding: 9px 2px !important;
+}
+
+.connection {
+	background-color: #fcfcfc;
+	box-shadow: 1px 1px 1px 1px #f1f1f1;
+	margin: 86px auto;
+	width: 580px;
+	padding: 1px 50px;
+}
+
+.register {
+	background-color: #fcfcfc;
+	box-shadow: 1px 1px 1px 1px #f1f1f1;
+	margin: 86px auto;
+	padding: 1px 50px;
+}
+
+.eventsView {
+	margin-top: 50px;
+}
+
+.eventsView .tab-pane {
+	border-bottom: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	padding: 5px 15px;
 }
