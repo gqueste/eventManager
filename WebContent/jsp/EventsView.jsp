@@ -121,11 +121,11 @@
 			<br>
 			<table class="table table-bordered">
 				<tr>
-					<td><u>Name</u></td>
-					<td><u>Adress</u></td>
-					<td><u>Url</u></td>
-					<td><u>Beginning</u></td>
-					<td><u>End</u></td>
+					<td style="text-decoration: underline">Name</td>
+					<td style="text-decoration: underline">Adress</td>
+					<td style="text-decoration: underline">Url</td>
+					<td style="text-decoration: underline">Beginning</td>
+					<td style="text-decoration: underline">End</td>
 				</tr>
 				<c:forEach items="${listInscription}" var="inscription">
 					<tr>
@@ -144,12 +144,12 @@
 			<br>
 			<table class="table table-bordered">
 				<tr>
-					<td><u>Name</u></td>
-					<td><u>Adress</u></td>
-					<td><u>Url</u></td>
-					<td><u>Beginning</u></td>
-					<td><u>End</u></td>
-					<td><u>Options</u></td>
+					<td style="text-decoration: underline">Name</td>
+					<td style="text-decoration: underline">Adress</td>
+					<td style="text-decoration: underline">>Url</td>
+					<td style="text-decoration: underline">>Beginning</td>
+					<td style="text-decoration: underline">End</td>
+					<td style="text-decoration: underline">Options</td>
 				</tr>
 				<c:forEach items="${list}" var="eventList">
 					<tr>
