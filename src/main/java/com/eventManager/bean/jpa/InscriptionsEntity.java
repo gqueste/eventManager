@@ -22,10 +22,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.eventManager.beanServices.EventsServices;
 import com.eventManager.persistence.services.jpa.InscriptionsPersistenceJPA;
-import com.eventManagerBeanServices.EventsServices;
-//import javax.validation.constraints.* ;
-//import org.hibernate.validator.constraints.* ;
 
 /**
  * Persistent class for entity stored in table "INSCRIPTIONS"

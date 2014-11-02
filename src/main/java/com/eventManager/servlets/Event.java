@@ -1,10 +1,6 @@
 package com.eventManager.servlets;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -30,7 +26,6 @@ public class Event extends HttpServlet {
 	 */
 	public Event() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

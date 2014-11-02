@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 import com.eventManager.bean.jpa.EventsEntity;
 import com.eventManager.bean.jpa.InscriptionsEntity;
 import com.eventManager.bean.jpa.UsersEntity;
+import com.eventManager.beanServices.EventsServices;
 import com.eventManager.utils.ConnexionUtils;
-import com.eventManagerBeanServices.EventsServices;
 
 /**
  * Servlet implementation class AddInscriptionEvent

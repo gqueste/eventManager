@@ -1,4 +1,4 @@
-package com.eventManagerBeanServices;
+package com.eventManager.beanServices;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;

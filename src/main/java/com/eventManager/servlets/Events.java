@@ -15,15 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.eventManager.bean.jpa.EventsEntity;
+import com.eventManager.beanServices.EventsServices;
 import com.eventManager.utils.ConnexionUtils;
-import com.eventManagerBeanServices.EventsServices;
 
 /**
  * Servlet implementation class Events
  */
 public class Events extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String EVENTS_VIEW = "jsp/EventsView.jsp";
 	private static final String PARAM_NAME_EVENT = "event";
 	private static final String PARAM_ADRESS_EVENT = "adress";
        
@@ -32,7 +31,6 @@ public class Events extends HttpServlet {
      */
     public Events() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -69,11 +67,9 @@ public class Events extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		try {
 			process(request, response);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -82,8 +78,6 @@ public class Events extends HttpServlet {
 		HttpSession session;
 		session = request.getSession(false);
 		request.setCharacterEncoding("UTF-8");
-		RequestDispatcher rd;
-		rd = request.getRequestDispatcher(EVENTS_VIEW);
 		String userId = (String) session.getAttribute("user_id");
 		String nameEvent = request.getParameter(PARAM_NAME_EVENT);
 		String adressEvent = request.getParameter(PARAM_ADRESS_EVENT);

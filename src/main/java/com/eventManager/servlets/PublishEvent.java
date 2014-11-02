@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.eventManager.beanServices.EventsServices;
 import com.eventManager.utils.ConnexionUtils;
-import com.eventManagerBeanServices.EventsServices;
 
 /**
  * Servlet implementation class PublishEvent
@@ -22,14 +22,12 @@ public class PublishEvent extends HttpServlet {
      */
     public PublishEvent() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		if (ConnexionUtils.isSessionValid(request)) {
 			HttpSession session;
 			session = request.getSession(false);
@@ -50,7 +48,6 @@ public class PublishEvent extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

@@ -7,14 +7,10 @@
 package com.eventManager.bean.jpa;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 //import javax.validation.constraints.* ;
 //import org.hibernate.validator.constraints.* ;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,11 +25,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import com.eventManager.persistence.services.jpa.EventsPersistenceJPA;
-import com.eventManager.persistence.services.jpa.InscriptionsPersistenceJPA;
-import com.eventManager.persistence.services.jpa.UsersPersistenceJPA;
-import com.eventManager.utils.RandomUtils;
 
 /**
  * Persistent class for entity stored in table "EVENTS"

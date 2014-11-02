@@ -8,24 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.eventManager.beanServices.EventsServices;
 import com.eventManager.utils.ConnexionUtils;
-import com.eventManagerBeanServices.EventsServices;
 
 /**
  * Servlet implementation class Events
  */
 public class DeleteEvents extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String EVENTS_VIEW = "jsp/EventsView.jsp";
-	private static final String PARAM_NAME_EVENT = "event";
-	private static final String PARAM_ADRESS_EVENT = "adress";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public DeleteEvents() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -53,11 +49,9 @@ public class DeleteEvents extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub	
 	}
 	
 	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub		
 	}
 
 }
