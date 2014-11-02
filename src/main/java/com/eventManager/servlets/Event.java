@@ -38,13 +38,11 @@ public class Event extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String userId = "-1";
 		EventsEntity event = (EventsEntity) request.getAttribute("event");
-		System.out.println(event.getEventId());
 		UsersEntity users = new UsersEntity();
 		HttpSession session;
 		session = request.getSession(false);
 		InscriptionsService inscriptionService = new InscriptionsService();
 		List<InscriptionsEntity> inscriptionsList = inscriptionService.getInscriptions(event);
-		System.out.println(inscriptionsList.size());
 		if (ConnexionUtils.isSessionValid(request)) {
 			userId = (String) session.getAttribute("user_id");
 		}

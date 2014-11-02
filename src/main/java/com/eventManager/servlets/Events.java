@@ -48,10 +48,6 @@ public class Events extends HttpServlet {
 			listEventsCreated = events.getAllEventsCreated(userId);
 			List<EventsEntity> listEventsParticipated;
 			listEventsParticipated = events.getAllEventsParticipated(userId);
-			for (EventsEntity e : listEventsParticipated){
-				System.out.println(e.getName());
-				System.out.println(e.getUrl());
-			}
 			request.setAttribute("lastAction", session.getAttribute(ConnexionUtils.SESSION_LAST_ACTION));
 			request.setAttribute("list", listEventsCreated);
 			request.setAttribute("listInscription", listEventsParticipated);
@@ -97,8 +93,6 @@ public class Events extends HttpServlet {
 		String action;
 		action = event.add(userId, nameEvent, adressEvent, timestampDebut, timestampFin, published);
 		session.setAttribute(ConnexionUtils.SESSION_LAST_ACTION, action);
-		System.out.println(nameEvent);
-		System.out.println(adressEvent);
 		response.sendRedirect("");
 	}
 
