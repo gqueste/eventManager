@@ -116,7 +116,7 @@
 	</ul>
 
 	<!-- Tab panes -->
-	<div class="tab-content">
+	<div class="tab-content" style="background-color: #fff;">
 		<div class="tab-pane active" id="participeIn">
 			<br>
 			<table class="table table-bordered">

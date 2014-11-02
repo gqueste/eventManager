@@ -1,5 +1,6 @@
 <%@ include file="../WEB-INF/jspf/header.jspf"%>
 <!-- DEBUT Evenement -->
+<h1>Evênement</h1>
 <div class="col-sm-5 eventLeftColumn">
 	<h3>
 		<c:out value="${event.name} " />

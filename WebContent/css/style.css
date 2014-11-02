@@ -72,6 +72,9 @@ label.labelEvents {
 
 .eventsView {
 	margin-top: 50px;
+	background-color: #fcfcfc;
+	box-shadow: 1px 1px 1px 1px #f1f1f1;
+	padding: 16px;
 }
 
 .eventsView .tab-pane {
@@ -79,4 +82,17 @@ label.labelEvents {
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
 	padding: 5px 15px;
+}
+
+h1 {
+	background-color: #046380;
+	color: #fff;
+	font-weight: normal;
+	/* 	text-transform: uppercase; */
+	font-size: 26px;
+	padding: 10px 35px;
+	border-radius: 6px;
+	margin: 25px 0px;
+	box-shadow: 1px 1px 1px 1px #ddd;
+	text-align: center;
 }
