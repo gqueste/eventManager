@@ -15,7 +15,7 @@ import com.eventManager.bean.jpa.UsersEntity;
 import com.eventManager.utils.ConnexionUtils;
 
 /**
- * Servlet implementation class PublishEvent
+ * Servlet implementation class AddInscriptionEvent
  */
 public class AddInscriptionEvent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -39,7 +39,6 @@ public class AddInscriptionEvent extends HttpServlet {
 		HttpSession session;
 		session = request.getSession(false);
 		String eventId = request.getParameter("eventId");
-		System.out.println("event id" + eventId);
 		InscriptionsEntity inscription = new InscriptionsEntity();
 		EventsEntity events = new EventsEntity();
 		EventsEntity event = events.getEvent(eventId);
@@ -52,7 +51,6 @@ public class AddInscriptionEvent extends HttpServlet {
 			lastAction = inscription.add(user.getName(), user.getSurname(),
 					eventId, user.getMail(), user.getCompany());
 			session.setAttribute("lastAction", lastAction);
-			//request.setAttribute("lastActionEvent", lastAction);
 			response.sendRedirect(ConnexionUtils.getLastUrlVisited(request));
 		} 
 		else {
@@ -66,7 +64,6 @@ public class AddInscriptionEvent extends HttpServlet {
 			else 
 				lastAction = inscription.add(name, surname, eventId, mail, societe);
 			session.setAttribute("lastAction", lastAction);
-			//request.setAttribute("lastActionEvent", lastAction);
 			response.sendRedirect(ConnexionUtils.getLastUrlVisited(request));
 		}
 	}

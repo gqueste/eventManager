@@ -207,21 +207,16 @@ public class EventsEntity implements Serializable {
         return sb.toString(); 
     } 
     
-//    public void addInscription(InscriptionsEntity inscription, String eventId) {
-//		EventsEntity events = new EventsEntity();
-//		EventsEntity event = events.getEvent(eventId);
-//		if (event != null) {
-//			ArrayList<InscriptionsEntity> listInscrits = new ArrayList<InscriptionsEntity>();
-//			if (event.getListOfInscriptions() != null)
-//				for (int i = 0; i < event.getListOfInscriptions().size(); i++)
-//					listInscrits.add(event.getListOfInscriptions().get(i));
-//			listInscrits.add(inscription);
-//			event.setListOfInscriptions(listOfInscriptions);
-//			EventsPersistenceJPA service = new EventsPersistenceJPA();
-//			service.save(this);
-//		}
-//	}
-    
+    /**
+     * Add an Events in the database
+     * @param userId
+     * @param nameEvent
+     * @param adressEvent
+     * @param debut
+     * @param fin
+     * @param published
+     * @return message
+     */
     public String add(String userId, String nameEvent, String adressEvent, Timestamp debut, Timestamp fin, short published) {
     	EventsPersistenceJPA eventsJPA = new EventsPersistenceJPA();
     	UsersPersistenceJPA eventsUsers = new UsersPersistenceJPA();
@@ -256,7 +251,11 @@ public class EventsEntity implements Serializable {
     	eventsJPA.insert(event);
     	return "addSuccess";
 	}
-    
+    /**
+     * Get back all events created by an user
+     * @param userId
+     * @return list of EventsEntity
+     */
     public List<EventsEntity> getAllEventsCreated(String userId) {
     	EventsPersistenceJPA eventsJPA = new EventsPersistenceJPA();
     	UsersPersistenceJPA usersJPA = new UsersPersistenceJPA();
@@ -266,15 +265,13 @@ public class EventsEntity implements Serializable {
 		List<EventsEntity> resultList = eventsJPA.search(critere);
 		return resultList;
 	}
+ 
     
-    public List<EventsEntity> getEvents(String id) {
-		EventsPersistenceJPA eventsJPA = new EventsPersistenceJPA();
-		Map<String, Object> critere = new HashMap<String, Object>();
-		critere.put("eventId", id);
-		List<EventsEntity> resultList = eventsJPA.search(critere);
-		return resultList;
-	}
-
+    /**
+     * Get back the Event which correspond to the id
+     * @param id
+     * @return list of EventsEntity
+     */
 	public EventsEntity getEvent(String id) {
 		EventsPersistenceJPA eventsJPA = new EventsPersistenceJPA();
 		Map<String, Object> critere = new HashMap<String, Object>();
@@ -286,6 +283,11 @@ public class EventsEntity implements Serializable {
 			return null;
 	}
     
+	/**
+	 * Get back all events which the user participated
+	 * @param userID
+	 * @return list of EventsEntity
+	 */
     public List<EventsEntity> getAllEventsParticipated(String userID) {
     	UsersPersistenceJPA userJPA = new UsersPersistenceJPA();
     	UsersEntity user = userJPA.load(Integer.parseInt(userID));

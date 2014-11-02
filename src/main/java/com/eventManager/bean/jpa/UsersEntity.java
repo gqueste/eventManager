@@ -91,6 +91,11 @@ public class UsersEntity implements Serializable {
 		this.company = company;
 	}
 
+	/**
+	 * Get back the user which corresponds to the id
+	 * @param id
+	 * @return UserEntity
+	 */
 	public UsersEntity getUser(String id) {
 		UsersPersistenceJPA usersJPA = new UsersPersistenceJPA();
 		Map<String, Object> critere = new HashMap<String, Object>();
@@ -102,12 +107,21 @@ public class UsersEntity implements Serializable {
 			return null;
 	}
 
+	/**
+	 * Get back all users
+	 * @return List of UsersEntity
+	 */
 	public List<UsersEntity> getUsers() {
 		UsersPersistenceJPA usersJPA = new UsersPersistenceJPA();
 		List<UsersEntity> resultList = usersJPA.search(new HashMap<String, Object>());
 		return resultList;
 	}
 	
+	/**
+	 * Get back Users which correspond to the mail
+	 * @param mail
+	 * @return List of UsersEntity
+	 */
 	public List<UsersEntity> getUsersByMail(String mail) {
 		UsersPersistenceJPA usersJPA = new UsersPersistenceJPA();
 		Map<String, Object> critere = new HashMap<String, Object>();

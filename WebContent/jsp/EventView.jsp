@@ -1,4 +1,5 @@
 <%@ include file="../WEB-INF/jspf/header.jspf"%>
+<!-- DEBUT Evenement -->
 <div class="col-sm-5 eventLeftColumn">
 	<h3>
 		<c:out value="${event.name} " />
@@ -22,6 +23,8 @@
 		au
 		<fmt:formatDate value="${event.dateEnd}" pattern="dd/MM/yyyy HH:mm" />
 	</p>
+	
+	<!-- DEBUT Erreurs et alertes inscription -->
 	<div class="blank"></div>
 	<c:if test='${lastAction=="addSuccess"}'>
 		<div class="alert alert-success" role="alert">
@@ -55,6 +58,9 @@
 			</button>
 		</div>
 	</c:if>
+	<!-- FIN Erreurs et alertes inscription -->
+	
+	<!-- DEBUT Bouton inscription si utilisateur connecté -->
 	<c:if test="${userId != \"-1\"}">
 		<a
 			href="${pageContext.request.contextPath}/AddInscriptionEvent?eventId=${event.eventId}">
@@ -65,6 +71,9 @@
 			</button>
 		</a>
 	</c:if>
+	<!-- FIN Bouton inscription si utilisateur connecté -->
+	
+	<!-- DEBUT Formulaire inscription si utilisateur non connecté -->
 	<c:if test="${userId == \"-1\"}">
 		<div id="inscriptionForm">
 			<fieldset>
@@ -97,6 +106,8 @@
 						<input type="text" class="form-control inputRegisterEvent"
 							name="inscriptionUserSociete" required value="${societe}">
 					</div>
+						<input type="text" style="display: none;"
+							name="eventId" required value="${event.eventId}">
 					<button type="submit"
 						style="float: right; margin-bottom: 20px; margin-right: 35px;"
 						class="btn btn-success">S'inscrire</button>
@@ -104,7 +115,11 @@
 			</fieldset>
 		</div>
 	</c:if>
+	<!-- FIN Formulaire inscription si utilisateur non connecté -->
 </div>
+<!-- FIN Evenement -->
+
+<!-- DEBUT Liste participants -->
 <div class="col-sm-7 eventRightColumn">
 	<h4>Liste des participants</h4>
 	<c:if test="${not empty inscriptions}">
@@ -123,6 +138,8 @@
 		<p>Aucun inscrit à cet évênement pour le moment.</p>
 	</c:if>
 </div>
+
+<!-- FIN Liste participants -->
 
 
 <%@ include file="../WEB-INF/jspf/footer.jspf"%>
