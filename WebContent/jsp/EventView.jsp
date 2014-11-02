@@ -23,7 +23,7 @@
 		<fmt:formatDate value="${event.dateEnd}" pattern="dd/MM/yyyy HH:mm" />
 	</p>
 	<div class="blank"></div>
-	<c:if test='${lastActionEvent=="addSuccess"}'>
+	<c:if test='${lastAction=="addSuccess"}'>
 		<div class="alert alert-success" role="alert">
 			Ajout effectué avec succès !
 			<button type="button" class="close" data-dismiss="alert">
@@ -31,7 +31,7 @@
 			</button>
 		</div>
 	</c:if>
-	<c:if test='${lastActionEvent=="addFailedMail"}'>
+	<c:if test='${lastAction=="addFailedMail"}'>
 		<div class="alert alert-warning" role="alert">
 			Utilisateur avec cette adresse déjà inscrit à l'évênement !
 			<button type="button" class="close" data-dismiss="alert">
@@ -39,7 +39,7 @@
 			</button>
 		</div>
 	</c:if>
-	<c:if test='${lastActionEvent=="addFailedMissed"}'>
+	<c:if test='${lastAction=="addFailedMissed"}'>
 		<div class="alert alert-warning" role="alert">
 			Tous les champs sont obligatoires.
 			<button type="button" class="close" data-dismiss="alert">
@@ -47,7 +47,7 @@
 			</button>
 		</div>
 	</c:if>
-	<c:if test='${lastActionEvent=="userDisconnect"}'>
+	<c:if test='${lastAction=="userDisconnect"}'>
 		<div class="alert alert-warning" role="alert">
 			Cette adresse mail correspond à un compte. Veuillez vous connecter.
 			<button type="button" class="close" data-dismiss="alert">
@@ -74,8 +74,9 @@
 						style="cursor: pointer;">Déjà un compte ? Connectez vous !</a>
 				</p>
 				<form role="form"
-					action="${pageContext.request.contextPath}/AddInscriptionEvent?eventId=${event.eventId}"
+					action="${pageContext.request.contextPath}/AddInscriptionEvent"
 					method="get">
+					<input type="hidden" name="eventId" value="${event.eventId}">
 					<div class="form-group">
 						<label class="labelRegisterEvent" for="inscriptionUserName">Nom</label>
 						<input type="text" class="form-control inputRegisterEvent"

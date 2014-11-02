@@ -188,6 +188,7 @@ public class InscriptionsEntity implements Serializable {
 		else if (mailDejaPresent)
 			return "addFailedMail";
 		else {
+			System.out.println("hello");
 			inscription.setName(nameUser);
 			inscription.setSurname(surnameUser);
 			inscription.setCompany(companyUser);
