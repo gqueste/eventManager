@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.eventManager.bean.jpa.EventsEntity;
 import com.eventManager.utils.ConnexionUtils;
+import com.eventManagerBeanServices.EventsServices;
 
 /**
  * Servlet implementation class PublishEvent
@@ -35,7 +35,7 @@ public class PublishEvent extends HttpServlet {
 			session = request.getSession(false);
 			String userId = (String) session.getAttribute("user_id");
 			String rowId = request.getParameter("id");
-			EventsEntity event = new EventsEntity();
+			EventsServices event = new EventsServices();
 			String action;
 			action = event.publish(Integer.parseInt(userId),Integer.parseInt(rowId));
 			session.setAttribute("lastAction", action);

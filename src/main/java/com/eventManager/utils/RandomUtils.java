@@ -3,7 +3,7 @@ package com.eventManager.utils;
 import java.util.Random;
 
 public class RandomUtils {
-	
+	/**Fonction permettant de générer une String de 20 caractères aléatoire*/
 	public String randomURL(){
 	char[] chars = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 	StringBuilder sb = new StringBuilder();

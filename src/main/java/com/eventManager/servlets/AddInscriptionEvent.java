@@ -13,6 +13,7 @@ import com.eventManager.bean.jpa.EventsEntity;
 import com.eventManager.bean.jpa.InscriptionsEntity;
 import com.eventManager.bean.jpa.UsersEntity;
 import com.eventManager.utils.ConnexionUtils;
+import com.eventManagerBeanServices.EventsServices;
 
 /**
  * Servlet implementation class AddInscriptionEvent
@@ -40,7 +41,7 @@ public class AddInscriptionEvent extends HttpServlet {
 		session = request.getSession(false);
 		String eventId = request.getParameter("eventId");
 		InscriptionsEntity inscription = new InscriptionsEntity();
-		EventsEntity events = new EventsEntity();
+		EventsServices events = new EventsServices();
 		EventsEntity event = events.getEvent(eventId);
 		request.setCharacterEncoding("UTF-8");
 		request.setAttribute("event", event);

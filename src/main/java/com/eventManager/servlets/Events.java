@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import com.eventManager.bean.jpa.EventsEntity;
 import com.eventManager.utils.ConnexionUtils;
+import com.eventManagerBeanServices.EventsServices;
 
 /**
  * Servlet implementation class Events
@@ -43,7 +44,7 @@ public class Events extends HttpServlet {
 			HttpSession session;
 			session = request.getSession(false);
 			String userId = (String) session.getAttribute("user_id");
-			EventsEntity events = new EventsEntity();
+			EventsServices events = new EventsServices();
 			List<EventsEntity> listEventsCreated;
 			listEventsCreated = events.getAllEventsCreated(userId);
 			List<EventsEntity> listEventsParticipated;
@@ -97,7 +98,7 @@ public class Events extends HttpServlet {
 	    Date parsedDateFin = dateFormat.parse(fin);
 	    Timestamp timestampDebut = new java.sql.Timestamp(parsedDateDeb.getTime());
 	    Timestamp timestampFin = new java.sql.Timestamp(parsedDateFin.getTime());
-		EventsEntity event = new EventsEntity();
+		EventsServices event = new EventsServices();
 		String action;
 		action = event.add(userId, nameEvent, adressEvent, timestampDebut, timestampFin, published);
 		session.setAttribute(ConnexionUtils.SESSION_LAST_ACTION, action);
