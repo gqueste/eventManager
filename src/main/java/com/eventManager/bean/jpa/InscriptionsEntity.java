@@ -7,9 +7,6 @@
 package com.eventManager.bean.jpa;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,9 +18,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-
-import com.eventManager.beanServices.EventsServices;
-import com.eventManager.persistence.services.jpa.InscriptionsPersistenceJPA;
 
 /**
  * Persistent class for entity stored in table "INSCRIPTIONS"
@@ -157,61 +151,5 @@ public class InscriptionsEntity implements Serializable {
 		sb.append("|");
 		sb.append(company);
 		return sb.toString();
-	}
-
-	/**
-	 * Get all InscriptionEntity which correspond to an event
-	 * @param events
-	 * @return list of InscriptionEntity
-	 */
-	public List<InscriptionsEntity> getInscriptions(EventsEntity events) {
-		InscriptionsPersistenceJPA inscriptionsJPA = new InscriptionsPersistenceJPA();
-		Map<String, Object> critere = new HashMap<String, Object>();
-		critere.put("events", events);
-		List<InscriptionsEntity> resultList = inscriptionsJPA.search(critere);
-		return resultList;
-	}
-
-	/**
-	 * Add an Inscription in the database
-	 * @param nameUser
-	 * @param surnameUser
-	 * @param eventId
-	 * @param mailUser
-	 * @param companyUser
-	 * @return message
-	 */
-	public String add(String nameUser, String surnameUser, String eventId,
-			String mailUser, String companyUser) {
-		InscriptionsPersistenceJPA inscriptionsJPA = new InscriptionsPersistenceJPA();
-		InscriptionsEntity inscription = new InscriptionsEntity();
-
-		EventsServices events = new EventsServices();
-		EventsEntity event = events.getEvent(eventId);
-
-		boolean mailDejaPresent = false;
-		List<InscriptionsEntity> inscriptionsList = inscription
-				.getInscriptions(event);
-		for (int i = 0; i < inscriptionsList.size(); i++)
-			if (inscriptionsList.get(i).getMail().equals(mailUser))
-				mailDejaPresent = true;
-
-		if (nameUser == null || surnameUser == null || mailUser == null
-				|| companyUser == null)
-			return "addFailedMissed";
-		else if (mailDejaPresent)
-			return "addFailedMail";
-		else {
-			System.out.println("hello");
-			inscription.setName(nameUser);
-			inscription.setSurname(surnameUser);
-			inscription.setCompany(companyUser);
-			inscription.setMail(mailUser);
-			inscription.setEvents(event);
-
-			inscriptionsJPA.insert(inscription);
-
-			return "addSuccess";
-		}
 	}
 }

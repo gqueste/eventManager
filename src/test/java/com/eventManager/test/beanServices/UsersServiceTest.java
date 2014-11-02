@@ -40,5 +40,20 @@ public class UsersServiceTest {
 		persistence.delete(id1);
 		persistence.delete(id2);
 	}
-
+	
+	@Test
+	public void testGetUser() {
+		//TODO
+		assertTrue(true);
+	}
+	@Test
+	public void testGetUsers() {
+		//TODO
+		assertTrue(true);
+	}
+	@Test
+	public void testGetUsersByMail() {
+		//TODO
+		assertTrue(true);
+	}
 }

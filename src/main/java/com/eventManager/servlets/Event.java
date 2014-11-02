@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.eventManager.bean.jpa.EventsEntity;
 import com.eventManager.bean.jpa.InscriptionsEntity;
 import com.eventManager.bean.jpa.UsersEntity;
+import com.eventManager.beanServices.InscriptionsService;
 import com.eventManager.utils.ConnexionUtils;
 
 /**
@@ -41,8 +42,8 @@ public class Event extends HttpServlet {
 		UsersEntity users = new UsersEntity();
 		HttpSession session;
 		session = request.getSession(false);
-		InscriptionsEntity inscriptions = new InscriptionsEntity();
-		List<InscriptionsEntity> inscriptionsList = inscriptions.getInscriptions(event);
+		InscriptionsService inscriptionService = new InscriptionsService();
+		List<InscriptionsEntity> inscriptionsList = inscriptionService.getInscriptions(event);
 		System.out.println(inscriptionsList.size());
 		if (ConnexionUtils.isSessionValid(request)) {
 			userId = (String) session.getAttribute("user_id");
@@ -64,7 +65,6 @@ public class Event extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.eventManager.bean.jpa.EventsEntity;
-import com.eventManager.bean.jpa.InscriptionsEntity;
 import com.eventManager.bean.jpa.UsersEntity;
 import com.eventManager.beanServices.EventsServices;
+import com.eventManager.beanServices.InscriptionsService;
+import com.eventManager.beanServices.UsersService;
 import com.eventManager.utils.ConnexionUtils;
 
 /**
@@ -38,17 +39,17 @@ public class AddInscriptionEvent extends HttpServlet {
 		String lastAction = "";
 		HttpSession session;
 		session = request.getSession(false);
+		UsersService userService = new UsersService();
+		InscriptionsService inscriptionService = new InscriptionsService();
 		String eventId = request.getParameter("eventId");
-		InscriptionsEntity inscription = new InscriptionsEntity();
 		EventsServices events = new EventsServices();
 		EventsEntity event = events.getEvent(eventId);
 		request.setCharacterEncoding("UTF-8");
 		request.setAttribute("event", event);
-		UsersEntity users = new UsersEntity();
 		if (ConnexionUtils.isSessionValid(request)) {
 			String userId = (String) session.getAttribute("user_id");
-			UsersEntity user = users.getUser(userId);
-			lastAction = inscription.add(user.getName(), user.getSurname(),
+			UsersEntity user = userService.getUser(userId);
+			lastAction = inscriptionService.add(user.getName(), user.getSurname(),
 					eventId, user.getMail(), user.getCompany());
 			session.setAttribute("lastAction", lastAction);
 			response.sendRedirect(ConnexionUtils.getLastUrlVisited(request));
@@ -58,11 +59,11 @@ public class AddInscriptionEvent extends HttpServlet {
 			String surname = request.getParameter("inscriptionUserSurname");
 			String mail = request.getParameter("inscriptionUserMail");
 			String societe = request.getParameter("inscriptionUserSociete");
-			List<UsersEntity> usersList = users.getUsersByMail(mail);
+			List<UsersEntity> usersList = userService.getUsersByMail(mail);
 			if (usersList.size() > 0)
 				lastAction = "userDisconnect";
 			else 
-				lastAction = inscription.add(name, surname, eventId, mail, societe);
+				lastAction = inscriptionService.add(name, surname, eventId, mail, societe);
 			session.setAttribute("lastAction", lastAction);
 			response.sendRedirect(ConnexionUtils.getLastUrlVisited(request));
 		}
