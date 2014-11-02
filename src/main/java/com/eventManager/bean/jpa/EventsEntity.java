@@ -207,20 +207,20 @@ public class EventsEntity implements Serializable {
         return sb.toString(); 
     } 
     
-    public void addInscription(InscriptionsEntity inscription, String eventId) {
-		EventsEntity events = new EventsEntity();
-		EventsEntity event = events.getEvent(eventId);
-		if (event != null) {
-			ArrayList<InscriptionsEntity> listInscrits = new ArrayList<InscriptionsEntity>();
-			if (event.getListOfInscriptions() != null)
-				for (int i = 0; i < event.getListOfInscriptions().size(); i++)
-					listInscrits.add(event.getListOfInscriptions().get(i));
-			listInscrits.add(inscription);
-			event.setListOfInscriptions(listOfInscriptions);
-			EventsPersistenceJPA service = new EventsPersistenceJPA();
-			service.save(this);
-		}
-	}
+//    public void addInscription(InscriptionsEntity inscription, String eventId) {
+//		EventsEntity events = new EventsEntity();
+//		EventsEntity event = events.getEvent(eventId);
+//		if (event != null) {
+//			ArrayList<InscriptionsEntity> listInscrits = new ArrayList<InscriptionsEntity>();
+//			if (event.getListOfInscriptions() != null)
+//				for (int i = 0; i < event.getListOfInscriptions().size(); i++)
+//					listInscrits.add(event.getListOfInscriptions().get(i));
+//			listInscrits.add(inscription);
+//			event.setListOfInscriptions(listOfInscriptions);
+//			EventsPersistenceJPA service = new EventsPersistenceJPA();
+//			service.save(this);
+//		}
+//	}
     
     public String add(String userId, String nameEvent, String adressEvent, Timestamp debut, Timestamp fin, short published) {
     	EventsPersistenceJPA eventsJPA = new EventsPersistenceJPA();

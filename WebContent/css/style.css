@@ -1,0 +1,45 @@
+@CHARSET "ISO-8859-1";
+
+.eventLeftColumn legend {
+	margin-bottom: 7px;
+	font-size: 15px;
+	border: 0;
+	width: auto;
+	color: #777;
+}
+
+.eventLeftColumn fieldset {
+	border: 1px solid #ddd;
+	padding: 7px;
+	margin: 15px 7px;
+}
+
+.eventLeftColumn .blank {
+	margin-top: 50px;
+}
+
+input.inputRegisterEvent {
+	display: inline-block;
+	width: 70%;
+}
+
+label.labelRegisterEvent {
+	width: 25%;
+	text-align: right;
+	padding-right: 7px;
+}
+
+.eventLeftColumn {
+	background-color: #fcfcfc;
+	box-shadow: 1px 1px 1px 1px #f1f1f1;
+	margin-top: 20px;
+}
+
+.eventRightColumn {
+	margin: 20px 0px;
+	padding: 2px 31px;
+}
+
+.eventRightColumn table tr td {
+	padding: 9px 2px !important;
+}

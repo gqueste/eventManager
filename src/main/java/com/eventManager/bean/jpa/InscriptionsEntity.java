@@ -11,7 +11,6 @@ import java.io.Serializable;
 //import javax.validation.constraints.* ;
 //import org.hibernate.validator.constraints.* ;
 
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,150 +33,170 @@ import com.eventManager.utils.RandomUtils;
  */
 
 @Entity
-@Table(name="INSCRIPTIONS", schema="APP" )
+@Table(name = "INSCRIPTIONS", schema = "APP")
 // Define named queries here
-@NamedQueries ( {
-  @NamedQuery ( name="InscriptionsEntity.countAll", query="SELECT COUNT(x) FROM InscriptionsEntity x" )
-} )
+@NamedQueries({ @NamedQuery(name = "InscriptionsEntity.countAll", query = "SELECT COUNT(x) FROM InscriptionsEntity x") })
 public class InscriptionsEntity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    //----------------------------------------------------------------------
-    // ENTITY PRIMARY KEY ( BASED ON A SINGLE FIELD )
-    //----------------------------------------------------------------------
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="INSCRIPTION_ID", nullable=false)
-    private Integer    inscriptionId ;
+	// ----------------------------------------------------------------------
+	// ENTITY PRIMARY KEY ( BASED ON A SINGLE FIELD )
+	// ----------------------------------------------------------------------
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "INSCRIPTION_ID", nullable = false)
+	private Integer inscriptionId;
 
+	// ----------------------------------------------------------------------
+	// ENTITY DATA FIELDS
+	// ----------------------------------------------------------------------
+	@Column(name = "MAIL", nullable = false, length = 50)
+	private String mail;
 
-    //----------------------------------------------------------------------
-    // ENTITY DATA FIELDS 
-    //----------------------------------------------------------------------    
-    @Column(name="MAIL", nullable=false, length=50)
-    private String     mail         ;
+	@Column(name = "NAME", nullable = false, length = 50)
+	private String name;
 
-    @Column(name="NAME", nullable=false, length=50)
-    private String     name         ;
+	@Column(name = "SURNAME", nullable = false, length = 50)
+	private String surname;
 
-    @Column(name="SURNAME", nullable=false, length=50)
-    private String     surname      ;
+	@Column(name = "COMPANY", nullable = false, length = 50)
+	private String company;
 
-    @Column(name="COMPANY", nullable=false, length=50)
-    private String     company      ;
+	// "eventId" (column "EVENT_ID") is not defined by itself because used as FK
+	// in a link
 
-	// "eventId" (column "EVENT_ID") is not defined by itself because used as FK in a link 
+	// ----------------------------------------------------------------------
+	// ENTITY LINKS ( RELATIONSHIP )
+	// ----------------------------------------------------------------------
+	@ManyToOne
+	@JoinColumn(name = "EVENT_ID", referencedColumnName = "EVENT_ID")
+	private EventsEntity events;
 
-
-    //----------------------------------------------------------------------
-    // ENTITY LINKS ( RELATIONSHIP )
-    //----------------------------------------------------------------------
-    @ManyToOne
-    @JoinColumn(name="EVENT_ID", referencedColumnName="EVENT_ID")
-    private EventsEntity events      ;
-
-
-    //----------------------------------------------------------------------
-    // CONSTRUCTOR(S)
-    //----------------------------------------------------------------------
-    public InscriptionsEntity() {
+	// ----------------------------------------------------------------------
+	// CONSTRUCTOR(S)
+	// ----------------------------------------------------------------------
+	public InscriptionsEntity() {
 		super();
-    }
-    
-    //----------------------------------------------------------------------
-    // GETTER & SETTER FOR THE KEY FIELD
-    //----------------------------------------------------------------------
-    public void setInscriptionId( Integer inscriptionId ) {
-        this.inscriptionId = inscriptionId ;
-    }
-    public Integer getInscriptionId() {
-        return this.inscriptionId;
-    }
+	}
 
-    //----------------------------------------------------------------------
-    // GETTERS & SETTERS FOR FIELDS
-    //----------------------------------------------------------------------
-    //--- DATABASE MAPPING : MAIL ( VARCHAR ) 
-    public void setMail( String mail ) {
-        this.mail = mail;
-    }
-    public String getMail() {
-        return this.mail;
-    }
+	// ----------------------------------------------------------------------
+	// GETTER & SETTER FOR THE KEY FIELD
+	// ----------------------------------------------------------------------
+	public void setInscriptionId(Integer inscriptionId) {
+		this.inscriptionId = inscriptionId;
+	}
 
-    //--- DATABASE MAPPING : NAME ( VARCHAR ) 
-    public void setName( String name ) {
-        this.name = name;
-    }
-    public String getName() {
-        return this.name;
-    }
+	public Integer getInscriptionId() {
+		return this.inscriptionId;
+	}
 
-    //--- DATABASE MAPPING : SURNAME ( VARCHAR ) 
-    public void setSurname( String surname ) {
-        this.surname = surname;
-    }
-    public String getSurname() {
-        return this.surname;
-    }
+	// ----------------------------------------------------------------------
+	// GETTERS & SETTERS FOR FIELDS
+	// ----------------------------------------------------------------------
+	// --- DATABASE MAPPING : MAIL ( VARCHAR )
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 
-    //--- DATABASE MAPPING : COMPANY ( VARCHAR ) 
-    public void setCompany( String company ) {
-        this.company = company;
-    }
-    public String getCompany() {
-        return this.company;
-    }
+	public String getMail() {
+		return this.mail;
+	}
 
+	// --- DATABASE MAPPING : NAME ( VARCHAR )
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    //----------------------------------------------------------------------
-    // GETTERS & SETTERS FOR LINKS
-    //----------------------------------------------------------------------
-    public void setEvents( EventsEntity events ) {
-        this.events = events;
-    }
-    public EventsEntity getEvents() {
-        return this.events;
-    }
+	public String getName() {
+		return this.name;
+	}
 
+	// --- DATABASE MAPPING : SURNAME ( VARCHAR )
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
 
-    //----------------------------------------------------------------------
-    // toString METHOD
-    //----------------------------------------------------------------------
-    public String toString() { 
-        StringBuffer sb = new StringBuffer(); 
-        sb.append("["); 
-        sb.append(inscriptionId);
-        sb.append("]:"); 
-        sb.append(mail);
-        sb.append("|");
-        sb.append(name);
-        sb.append("|");
-        sb.append(surname);
-        sb.append("|");
-        sb.append(company);
-        return sb.toString(); 
-    } 
+	public String getSurname() {
+		return this.surname;
+	}
 
-    
-    public String add(String nameUser, String surnameUser, String eventId, String mailUser, String companyUser) {
-    	InscriptionsPersistenceJPA inscriptionsJPA = new InscriptionsPersistenceJPA();
-    	InscriptionsEntity inscription = new InscriptionsEntity(); 
+	// --- DATABASE MAPPING : COMPANY ( VARCHAR )
+	public void setCompany(String company) {
+		this.company = company;
+	}
 
-    	EventsEntity events = new EventsEntity();
-    	EventsEntity event = events.getEvent(eventId);
-    	
-    	inscription.setName(nameUser);
-    	inscription.setSurname(surnameUser);
-    	inscription.setCompany(companyUser);
-    	inscription.setMail(mailUser);
-    	inscription.setEvents(event);
-    	
-    	inscriptionsJPA.insert(inscription);
-    	
-    	event.addInscription(inscription, eventId);
-    	
-    	return "addSuccess";
+	public String getCompany() {
+		return this.company;
+	}
+
+	// ----------------------------------------------------------------------
+	// GETTERS & SETTERS FOR LINKS
+	// ----------------------------------------------------------------------
+	public void setEvents(EventsEntity events) {
+		this.events = events;
+	}
+
+	public EventsEntity getEvents() {
+		return this.events;
+	}
+
+	// ----------------------------------------------------------------------
+	// toString METHOD
+	// ----------------------------------------------------------------------
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("[");
+		sb.append(inscriptionId);
+		sb.append("]:");
+		sb.append(mail);
+		sb.append("|");
+		sb.append(name);
+		sb.append("|");
+		sb.append(surname);
+		sb.append("|");
+		sb.append(company);
+		return sb.toString();
+	}
+
+	public List<InscriptionsEntity> getInscriptions(EventsEntity events) {
+		InscriptionsPersistenceJPA inscriptionsJPA = new InscriptionsPersistenceJPA();
+		Map<String, Object> critere = new HashMap<String, Object>();
+		critere.put("events", events);
+		List<InscriptionsEntity> resultList = inscriptionsJPA.search(critere);
+		return resultList;
+	}
+
+	public String add(String nameUser, String surnameUser, String eventId,
+			String mailUser, String companyUser) {
+		InscriptionsPersistenceJPA inscriptionsJPA = new InscriptionsPersistenceJPA();
+		InscriptionsEntity inscription = new InscriptionsEntity();
+
+		EventsEntity events = new EventsEntity();
+		EventsEntity event = events.getEvent(eventId);
+
+		boolean mailDejaPresent = false;
+		List<InscriptionsEntity> inscriptionsList = inscription
+				.getInscriptions(event);
+		for (int i = 0; i < inscriptionsList.size(); i++)
+			if (inscriptionsList.get(i).getMail().equals(mailUser))
+				mailDejaPresent = true;
+
+		if (nameUser == null || surnameUser == null || mailUser == null
+				|| companyUser == null)
+			return "addFailedMissed";
+		else if (mailDejaPresent)
+			return "addFailedMail";
+		else {
+			inscription.setName(nameUser);
+			inscription.setSurname(surnameUser);
+			inscription.setCompany(companyUser);
+			inscription.setMail(mailUser);
+			inscription.setEvents(event);
+
+			inscriptionsJPA.insert(inscription);
+
+			return "addSuccess";
+		}
 	}
 }

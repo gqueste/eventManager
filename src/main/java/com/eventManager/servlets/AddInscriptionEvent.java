@@ -3,6 +3,7 @@ package com.eventManager.servlets;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,42 +20,64 @@ import com.eventManager.utils.ConnexionUtils;
  */
 public class AddInscriptionEvent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddInscriptionEvent() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AddInscriptionEvent() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String lastAction = "";
+		String eventId = request.getParameter("eventId");
+		InscriptionsEntity inscription = new InscriptionsEntity();
+		EventsEntity events = new EventsEntity();
+		EventsEntity event = events.getEvent(eventId);
+		RequestDispatcher rd;
+		request.setCharacterEncoding("UTF-8");
+		UsersEntity users = new UsersEntity();
 		if (ConnexionUtils.isSessionValid(request)) {
 			HttpSession session;
 			session = request.getSession(false);
 			String userId = (String) session.getAttribute("user_id");
-			String eventId = request.getParameter("eventId");
-			
-			InscriptionsEntity inscription = new InscriptionsEntity();
-			UsersEntity users = new UsersEntity();
-			List<UsersEntity> listUsers = users.getUser(userId);
-			if (listUsers.size() == 1)
-				inscription.add(listUsers.get(0).getName(), listUsers.get(0).getSurname(), eventId, listUsers.get(0).getMail(), listUsers.get(0).getCompany());
-			response.sendRedirect("jsp/EventView.jsp");
-		}
-		else{
-			response.sendRedirect("");
+			UsersEntity user = users.getUser(userId);
+			lastAction = inscription.add(user.getName(), user.getSurname(),
+					eventId, user.getMail(), user.getCompany());
+			request.setAttribute("lastActionEvent", lastAction);
+			request.setAttribute("event", event);
+			rd = request.getRequestDispatcher("event/" + event.getUrl());
+			rd.forward(request, response);
+		} else {
+			String name = request.getParameter("inscriptionUserName");
+			String surname = request.getParameter("inscriptionUserSurname");
+			String mail = request.getParameter("inscriptionUserMail");
+			String societe = request.getParameter("inscriptionUserSociete");
+			List<UsersEntity> usersList = users.getUsersByMail(mail);
+			if (usersList.size() > 0)
+				lastAction = "userDisconnect";
+			else 
+				lastAction = inscription.add(name, surname, eventId, mail, societe);
+			request.setAttribute("lastActionEvent", lastAction);
+			request.setAttribute("event", event);
+			rd = request.getRequestDispatcher("event/" + event.getUrl());
+			rd.forward(request, response);
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 

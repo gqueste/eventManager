@@ -39,44 +39,24 @@ public class Event extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String userId = "-1";
+		EventsEntity event = (EventsEntity) request.getAttribute("event");
+		UsersEntity users = new UsersEntity();
+		InscriptionsEntity inscriptions = new InscriptionsEntity();
+		List<InscriptionsEntity> inscriptionsList = inscriptions.getInscriptions(event);
 		if (ConnexionUtils.isSessionValid(request)) {
 			HttpSession session;
 			session = request.getSession(false);
 			userId = (String) session.getAttribute("user_id");
 		}
-//		EventsEntity events = new EventsEntity();
-		EventsEntity event = (EventsEntity) request.getAttribute("event");
-//		String id = request.getPathInfo();
-//		String[] idsplit = id.split("/");
-//		String eventId = "-1";
-//		if (idsplit.length == 2)
-//			if (!idsplit[1].equals("*"))
-//				eventId = idsplit[1];
-//		List<EventsEntity> listEvents = events.getEvent(eventId);
-		UsersEntity users = new UsersEntity();
-		List<InscriptionsEntity> inscriptions = null;
-//		if (listEvents.size() == 0 || listEvents.size() > 1) {
-//			eventId = "-1";
-			inscriptions = event.getListOfInscriptions();
-//		}
-//		else {
-			users = event.getUsers();
-			request.setAttribute("event", event);
-			request.setAttribute("users", users);
-			request.setAttribute("inscriptions", inscriptions);
-			request.setAttribute("userId", userId);
-//		}
-//		if (eventId.equals("-1")) {
-//			RequestDispatcher rd = request
-//					.getRequestDispatcher("/jsp/error_404.jsp");
-//			rd.forward(request, response);
-//		} else {
-			RequestDispatcher rd = request
-					.getRequestDispatcher("/jsp/EventView.jsp");
-			rd.forward(request, response);
-//		}
+		users = event.getUsers();
+		request.setAttribute("event", event);
+		request.setAttribute("users", users);
+		request.setAttribute("inscriptions", inscriptionsList);
+		request.setAttribute("userId", userId);
+		RequestDispatcher rd = request
+				.getRequestDispatcher("/jsp/EventView.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
