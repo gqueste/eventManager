@@ -15,6 +15,9 @@ import com.eventManager.persistence.services.jpa.InscriptionsPersistenceJPA;
 import com.eventManager.persistence.services.jpa.UsersPersistenceJPA;
 import com.eventManager.utils.RandomUtils;
 
+/**
+ * Services pour Events
+ */
 public class EventsServices {    
 	
 	/**Fonction permettant d'ajouter un event

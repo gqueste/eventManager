@@ -13,6 +13,7 @@ import com.eventManager.utils.ConnexionUtils;
 
 /**
  * Servlet implementation class PublishEvent
+ * Contrôleur de la publication d'un event
  */
 public class PublishEvent extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -18,6 +18,7 @@ import com.eventManager.utils.ConnexionUtils;
 
 /**
  * Servlet implementation class LogIn
+ * Contrôle de login d'un utilisateur
  */
 public class LogIn extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -45,9 +46,17 @@ public class LogIn extends HttpServlet {
 		process(request, response);
 	}
 
+	/**
+	 * Controler de l'écran de connexion avec un compte
+	 * Verifie si les données entrées sont correctes
+	 * Renvoie vers la page précédente si informations correctes
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// gere la connexion
-		//TODO revenir à la page précédente (le mettre dans session : paramètre fiasco)
 		RequestDispatcher rd;
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession(false);
@@ -74,10 +83,6 @@ public class LogIn extends HttpServlet {
 					if(paramMail.equals(ConnexionUtils.EMPTY_STRING)) {
 						erreurs += ConnexionUtils.ERREUR_MAIL_MANQUANT;
 					}
-					else {
-						//TODO mail existe ?
-					}
-					
 					if(paramPassword.equals(ConnexionUtils.EMPTY_STRING)) {
 						erreurs += ConnexionUtils.ERREUR_PASSWORD_MANQUANT;
 					}

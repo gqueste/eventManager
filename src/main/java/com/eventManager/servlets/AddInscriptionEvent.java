@@ -17,6 +17,7 @@ import com.eventManager.utils.ConnexionUtils;
 
 /**
  * Servlet implementation class AddInscriptionEvent
+ * Contrôleur pour l'inscription à un événement
  */
 public class AddInscriptionEvent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +27,6 @@ public class AddInscriptionEvent extends HttpServlet {
 	 */
 	public AddInscriptionEvent() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -35,7 +35,6 @@ public class AddInscriptionEvent extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String lastAction = "";
 		HttpSession session;
 		session = request.getSession(false);
@@ -75,7 +74,6 @@ public class AddInscriptionEvent extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

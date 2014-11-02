@@ -20,6 +20,7 @@ import com.eventManager.utils.ConnexionUtils;
 
 /**
  * Servlet implementation class Events
+ * Contrôleur pour l'affichage des events créés par l'utilisateur et l'ajout d'un nouvel event
  */
 public class Events extends HttpServlet {
 	private static final long serialVersionUID = 1L;

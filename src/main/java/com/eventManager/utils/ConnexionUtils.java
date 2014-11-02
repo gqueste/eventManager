@@ -28,20 +28,28 @@ public class ConnexionUtils {
 
 	public static final String PARAM_CONFIRMPASSWORD = "confirm-password";
 	
-	
+	/**
+	 * Vérifie si une session dispose d'un id utilisateur
+	 * @param request
+	 * @return true si user connecté, false sinon
+	 */
 	public static boolean isSessionValid(HttpServletRequest request) {
 		boolean ret = false;
 		HttpSession session = request.getSession();
 		if(session != null) {
 			String idUtilisateur = (String) session.getAttribute(SESSION_USER_ATTRIBUTE);
 			if(idUtilisateur != null) {
-				System.out.println(SESSION_USER_ATTRIBUTE + " : "+idUtilisateur);
 				ret = true;
 			}
 		}
 		return ret;
 	}
 	
+	/**
+	 * Retourne la dernière url visitée dans la session
+	 * @param request
+	 * @return String url
+	 */
 	public static String getLastUrlVisited(HttpServletRequest request) {
 		String ret = "";
 		HttpSession session = request.getSession();
@@ -54,6 +62,11 @@ public class ConnexionUtils {
 		return ret;
 	}
 	
+	/**
+	 * Set dans la session la dernière url visitée
+	 * @param request
+	 * @param url
+	 */
 	public static void setLastUrlVisited(HttpServletRequest request, String url) {
 		HttpSession session = request.getSession();
 		session.setAttribute(SESSION_LAST_URL, url);

@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.eventManager.bean.jpa.UsersEntity;
-import com.eventManager.persistence.services.jpa.UsersPersistenceJPA;
+import com.eventManager.beanServices.UsersService;
 import com.eventManager.utils.ConnexionUtils;
 
 /**
  * Servlet implementation class Register
+ * Contrôleur de l'inscription d'un utilisateur
  */
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,7 +29,6 @@ public class Register extends HttpServlet {
 	 */
 	public Register() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -45,6 +45,15 @@ public class Register extends HttpServlet {
 		process(request, response);	
 	}
 
+	/**
+	 * Gère l'enregistrement d'un nouvel utilisateur
+	 * Vérifie que les informations sont correctes
+	 * Si informations correctes, redirection vers la page précédente
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
 		request.setCharacterEncoding("UTF-8");
@@ -87,11 +96,11 @@ public class Register extends HttpServlet {
 
 				if(erreurs.equals(ConnexionUtils.EMPTY_STRING)) {
 					//pas de champ manquant
-					//vérification si données entrées sont bonnes	
-					UsersPersistenceJPA em = new UsersPersistenceJPA();
+					//vérification si données entrées sont bonnes
+					UsersService service = new UsersService();
 
 					UsersEntity user = new UsersEntity(paramMail, paramName, paramSurname, paramPassword, paramCompany);
-					int user_id = em.insertAndGetID(user);
+					int user_id = service.insertAndGetID(user);
 					if(user_id == -1) {
 						erreurs += ERREUR_MAIL_DEJA_UTILISE;
 					}

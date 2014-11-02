@@ -6,10 +6,6 @@
 package com.eventManager.persistence.services.jpa;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
@@ -64,26 +60,5 @@ public class UsersPersistenceJPA extends GenericJpaService<UsersEntity, Integer>
 		} ;
 		// JPA operation execution 
 		return (Long) execute(operation);
-	}
-	
-	/**
-	 * Insere un user et retourne son ID
-	 * @param user UserEntity, l'user à ajouter
-	 * @return ID de l'user tout juste inséré, -1 si pas inséré
-	 */
-	public int insertAndGetID(UsersEntity user) {
-		int ret = -1;
-		Map<String,Object> critere = new HashMap<String, Object>();
-		critere.put("mail", user.getMail());
-		ArrayList<UsersEntity> listeUsers = (ArrayList<UsersEntity>) this.search(critere);
-		if(listeUsers.size() == 0) {
-			this.insert(user);
-			listeUsers = (ArrayList<UsersEntity>) this.search(critere);
-			if(listeUsers.size() == 1) {
-				UsersEntity userFound = listeUsers.get(0);
-				ret = userFound.getUserId();
-			}		
-		}		
-		return ret;
 	}
 }

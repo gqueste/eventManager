@@ -21,6 +21,7 @@ import com.eventManager.utils.ConnexionUtils;
 
 /**
  * Servlet Filter implementation class PublishedFilter
+ * Filtre pour accès à la page d'inscription d'un event
  */
 public class PublishedFilter implements Filter {
 
@@ -28,14 +29,12 @@ public class PublishedFilter implements Filter {
      * Default constructor. 
      */
     public PublishedFilter() {
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -83,7 +82,6 @@ public class PublishedFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 }

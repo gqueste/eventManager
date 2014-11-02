@@ -15,6 +15,7 @@ import com.eventManager.utils.ConnexionUtils;
 
 /**
  * Servlet Filter implementation class ConnexionFilter
+ * Filtre pour vérifier la connexion d'un utilisateur
  */
 public class ConnexionFilter implements Filter {
 
@@ -22,21 +23,21 @@ public class ConnexionFilter implements Filter {
      * Default constructor. 
      */
     public ConnexionFilter() {
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
 	}
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+	 * Sauvegarde l'url depuis laquelle on arrive
+	 * Vérifie l'état de la connexion: si user connecté, doFilter
+	 * Sinon, redirection vers page de login
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// place your code here
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse rep = (HttpServletResponse) response;
 		ConnexionUtils.setLastUrlVisited(req, req.getRequestURL().toString());
@@ -54,7 +55,6 @@ public class ConnexionFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 }

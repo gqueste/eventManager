@@ -13,6 +13,7 @@ import com.eventManager.utils.ConnexionUtils;
 
 /**
  * Servlet implementation class Events
+ * Contrôleur pour la destruction d'un event
  */
 public class DeleteEvents extends HttpServlet {
 	private static final long serialVersionUID = 1L;

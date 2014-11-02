@@ -17,6 +17,7 @@ import com.eventManager.utils.ConnexionUtils;
 
 /**
  * Servlet implementation class Event
+ * Contrôle pour l'afficha de la page d'inscription à un event
  */
 public class Event extends HttpServlet {
 	private static final long serialVersionUID = 1L;
