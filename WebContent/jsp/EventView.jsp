@@ -74,7 +74,7 @@
 						style="cursor: pointer;">Déjà un compte ? Connectez vous !</a>
 				</p>
 				<form role="form"
-					action="${pageContext.request.contextPath}/AddInscriptionEvent?eventId=${event.eventId}"
+					action="${pageContext.request.contextPath}/AddInscriptionEvent"
 					method="get">
 					<div class="form-group">
 						<label class="labelRegisterEvent" for="inscriptionUserName">Nom</label>
@@ -96,6 +96,8 @@
 						<input type="text" class="form-control inputRegisterEvent"
 							name="inscriptionUserSociete" required value="${societe}">
 					</div>
+						<input type="text" style="display: none;"
+							name="eventId" required value="${event.eventId}">
 					<button type="submit"
 						style="float: right; margin-bottom: 20px; margin-right: 35px;"
 						class="btn btn-success">S'inscrire</button>
