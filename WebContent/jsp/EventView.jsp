@@ -1,12 +1,12 @@
 <%@ include file="../WEB-INF/jspf/header.jspf"%>
 <!-- DEBUT Evenement -->
-<h1>Evênement</h1>
+<h1>Evénement</h1>
 <div class="col-sm-5 eventLeftColumn">
 	<h3>
 		<c:out value="${event.name} " />
 	</h3>
 	<p>
-		<span class="glyphicon glyphicon-user"></span> Evênement créé par
+		<span class="glyphicon glyphicon-user"></span> Evénement créé par
 		<c:out value="${users.surname}" />
 		<c:out value="${users.name}" />
 		,
@@ -37,7 +37,7 @@
 	</c:if>
 	<c:if test='${lastAction=="addFailedMail"}'>
 		<div class="alert alert-warning" role="alert">
-			Utilisateur avec cette adresse déjà inscrit à l'évênement !
+			Utilisateur avec cette adresse déjà inscrit à l'événement !
 			<button type="button" class="close" data-dismiss="alert">
 				<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
 			</button>
@@ -68,7 +68,7 @@
 			<button style="margin: 20px 10px;" type="button"
 				class="btn btn-success">
 				<span class="glyphicon glyphicon-ok"></span> S'inscrire à
-				l'évênement
+				l'événement
 			</button>
 		</a>
 	</c:if>
@@ -78,7 +78,7 @@
 	<c:if test="${userId == \"-1\"}">
 		<div id="inscriptionForm">
 			<fieldset>
-				<legend>Inscription à l'évênement</legend>
+				<legend>Inscription à l'événement</legend>
 				<p>
 					<a href="${pageContext.request.contextPath}/login"
 						style="cursor: pointer;">Déjà un compte ? Connectez vous !</a>
@@ -136,7 +136,7 @@
 		</table>
 	</c:if>
 	<c:if test="${empty inscriptions}">
-		<p>Aucun inscrit à cet évênement pour le moment.</p>
+		<p>Aucun inscrit à cet événement pour le moment.</p>
 	</c:if>
 </div>
 
